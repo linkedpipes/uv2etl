@@ -40,7 +40,7 @@ public class UvConvertor {
         @Override
         public boolean shouldSerializeMember(Class definedIn, String fieldName) {
             if (definedIn == Object.class) {
-                // Skip missing properties.
+                LOG.debug("Ignored missing: {} in {}", fieldName, definedIn);
                 return false;
             }
             return super.shouldSerializeMember(definedIn, fieldName);

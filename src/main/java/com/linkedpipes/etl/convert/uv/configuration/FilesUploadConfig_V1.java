@@ -55,8 +55,8 @@ class FilesUploadConfig_V1 implements Configuration {
             // Replace with local file upload.
             toLocalUpload(pipeline, component);
         } else {
-            throw new UnsupportedOperationException(
-                    "Unsupported URI type: " + uri);
+            LOG.error("{} : Component ignored.", component);
+            pipeline.removeComponent(component);
         }
 
     }
