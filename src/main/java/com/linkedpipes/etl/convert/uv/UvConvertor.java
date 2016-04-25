@@ -70,11 +70,15 @@ public class UvConvertor {
         throw new RuntimeException("Missing definition file.");
     }
 
-    public static void main(String[] args) throws Exception {
-        if (args.length == 0) {
+    private static void printUsage() {
             System.out.println("Usage: UvConvertor "
                     + "-i {UV_PIPELINE_ZIP} "
-                    + "-o {LP_PIPELINE_JSON}");
+                    + "[-o {LP_PIPELINE_JSON}]");
+    }
+
+    public static void main(String[] args) throws Exception {
+        if (args.length == 0) {
+            printUsage();
             return;
         }
         String inputPath = null;
@@ -101,11 +105,12 @@ public class UvConvertor {
             }
             index++;
         }
-        if (inputPath == null || outputPath == null) {
-            System.out.println("Usage: UvConvertor "
-                    + "-i {UV_PIPELINE_ZIP} "
-                    + "-o {LP_PIPELINE_JSON}");
+        if (inputPath == null) {
+            printUsage();
             return;
+        }
+        if (outputPath == null) {
+            outputPath = inputPath + ".jsonld";
         }
         //
         final File file = new File(inputPath);
