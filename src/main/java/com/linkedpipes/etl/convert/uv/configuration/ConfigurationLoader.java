@@ -114,6 +114,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(cz_DistributionMetadataConfig_V1.class);
         xstream.processAnnotations(RdfNotEmptyConfig_V1.class);
         xstream.processAnnotations(SPARQLConfig_V1.class);
+        xstream.processAnnotations(XsltConfig_V2.class);
     }
 
     public Configuration loadConfiguration(String configuration) {
