@@ -2,6 +2,7 @@ package com.linkedpipes.etl.convert.uv.configuration;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.mapper.CannotResolveClassException;
 import com.thoughtworks.xstream.mapper.Mapper;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 import java.io.ByteArrayInputStream;
@@ -34,10 +35,25 @@ public class ConfigurationLoader {
         @Override
         public boolean shouldSerializeMember(Class definedIn, String fieldName) {
             if (definedIn == Object.class) {
-                // Skip missing properties.
+                LOG.debug("Ignored missing: {} in {}", fieldName, definedIn);
                 return false;
             }
             return super.shouldSerializeMember(definedIn, fieldName);
+        }
+
+        @Override
+        public Class realClass(String elementName) {
+            try {
+                Class clazz = super.realClass(elementName);
+                return clazz;
+            } catch (CannotResolveClassException ex) {
+                if (elementName.contains(".")) {
+                    // There might be names of "properties" ? So we require
+                    // dot to be presented (in a package name).
+                    LOG.warn("Unknown class : {}", elementName);
+                }
+                return UnknownConfiguration.class;
+            }
         }
 
     }
