@@ -81,11 +81,7 @@ class XsltConfig_V2 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-xslt#template"),
                 vf.createLiteral(xsltTemplate)));
 
-        if (xsltTemplateName == null
-                || xsltTemplateName.compareTo("Equals") == 1) {
-            LOG.info("{} : Ignore 'xsltTemplateName' property.", component);
-        }
-
+        // xsltTemplateName is not used, we can safely ignore it.
         if (!failOnError) {
             LOG.info("{} : Will fail on error.", component);
         }
