@@ -172,10 +172,12 @@ class TabularConfig_V2 implements Configuration {
                 RDF.TYPE,
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#Configuration")));
 
-        st.add(vf.createStatement(
-                configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#keyColumn"),
-                vf.createLiteral(keyColumn)));
+        if (keyColumn != null) {
+            st.add(vf.createStatement(
+                    configResource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#keyColumn"),
+                    vf.createLiteral(keyColumn)));
+        }
 
         st.add(vf.createStatement(
                 configResource,
@@ -276,10 +278,12 @@ class TabularConfig_V2 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#encoding"),
                 vf.createLiteral(encoding)));
 
-        st.add(vf.createStatement(
-                configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#rowsLimit"),
-                vf.createLiteral(rowsLimit)));
+        if (rowsLimit != null) {
+            st.add(vf.createStatement(
+                    configResource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#rowsLimit"),
+                    vf.createLiteral(rowsLimit)));
+        }
 
         st.add(vf.createStatement(
                 configResource,
