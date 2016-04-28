@@ -37,7 +37,7 @@ class FilesFilterConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputFiles");
         pipeline.renameOutPort(component, "output", "OutputFiles");
 
-        component.setTemplate("http://localhost:8080/resources/components/t-filesFilter");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-filesFilter");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

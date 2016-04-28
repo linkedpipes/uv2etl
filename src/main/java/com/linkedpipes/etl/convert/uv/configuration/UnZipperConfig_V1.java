@@ -24,7 +24,7 @@ class UnZipperConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "FilesInput");
         pipeline.renameOutPort(component, "output", "FilesOutput");
 
-        component.setTemplate("http://localhost:8080/resources/components/t-unpackZip");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-unpackZip");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

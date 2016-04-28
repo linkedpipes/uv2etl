@@ -25,7 +25,7 @@ class TextHolderConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "file", "FilesOutput");
 
-        component.setTemplate("http://localhost:8080/resources/components/e-textHolder");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-textHolder");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

@@ -131,7 +131,7 @@ class TabularConfig_V2 implements Configuration {
 
     private boolean advancedKeyColumn = false;
 
-    private String rowsClass = "\"http://unifiedviews.eu/ontology/t-tabular/Row";
+    private String rowsClass = "http://unifiedviews.eu/ontology/t-tabular/Row";
 
     private String xlsSheetName = null;
 
@@ -161,7 +161,7 @@ class TabularConfig_V2 implements Configuration {
         pipeline.renameInPort(component, "table", "InputFiles");
         pipeline.renameOutPort(component, "triplifiedTable", "OutputRdf");
 
-        component.setTemplate("http://localhost:8080/resources/components/t-tabularUv");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-tabularUv");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -377,7 +377,7 @@ class TabularConfig_V2 implements Configuration {
                 component.getX(),
                 component.getY() + 40);
 
-        merger.setTemplate("http://localhost:8080/resources/components/t-graphMerger");
+        merger.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-graphMerger");
 
         pipeline.insertComponent(merger, 0, 60);
         pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");

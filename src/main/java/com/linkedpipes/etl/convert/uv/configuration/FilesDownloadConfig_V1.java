@@ -62,7 +62,7 @@ class FilesDownloadConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "output", "FilesOutput");
 
-        component.setTemplate("http://localhost:8080/resources/components/e-httpGetFile");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-httpGetFile");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

@@ -58,7 +58,7 @@ class FilesToRDFConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "filesInput", "InputFiles");
         pipeline.renameOutPort(component, "rdfOutput", "OutputRdf");
 
-        component.setTemplate("http://localhost:8080/resources/components/t-filesToRdf");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-filesToRdf");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -111,7 +111,7 @@ class FilesToRDFConfig_V1 implements Configuration {
                 component.getX(),
                 component.getY() + 40);
 
-        merger.setTemplate("http://localhost:8080/resources/components/t-graphMerger");
+        merger.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-graphMerger");
 
         pipeline.insertComponent(merger, 0, 60);
         pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");

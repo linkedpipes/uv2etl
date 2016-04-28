@@ -71,7 +71,7 @@ class RdfNotEmptyConfig_V1 implements Configuration {
         }
 
         // Remap input connections.
-        component.setTemplate("http://localhost:8080/resources/components/q-sparqlAsk");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/q-sparqlAsk");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

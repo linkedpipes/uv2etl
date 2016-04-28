@@ -66,7 +66,7 @@ class FilesUploadConfig_V1 implements Configuration {
 
         pipeline.renameInPort(component, "input", "FilesInput");
 
-        component.setTemplate("http://localhost:8080/resources/components/l-filesToLocal");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/l-filesToLocal");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

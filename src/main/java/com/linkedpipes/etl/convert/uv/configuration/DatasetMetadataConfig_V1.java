@@ -92,7 +92,7 @@ class DatasetMetadataConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "metadata", "Metadata");
 
-        component.setTemplate("http://localhost:8080/resources/components/e-datasetMetadata");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-datasetMetadata");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -108,7 +108,7 @@ class DatasetMetadataConfig_V1 implements Configuration {
                 vf.createLiteral(datasetURI)));
 
         if (distributionURI != null) {
-            LOG.warn("{} : 'distributionURI' ignored.", component);
+            LOG.debug("{} : 'distributionURI' ignored.", component);
         }
 
         if (useDatasetURIfromInput) {

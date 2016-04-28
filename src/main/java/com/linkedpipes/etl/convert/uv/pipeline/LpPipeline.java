@@ -27,6 +27,8 @@ import org.slf4j.LoggerFactory;
  */
 public class LpPipeline {
 
+    public static final String BASE_IRI = "http://localhost/";
+
     private static final float SCALE_X = 1.2f;
 
     private static final float SCALE_Y = 1.2f;
@@ -471,7 +473,7 @@ public class LpPipeline {
     public List<Statement> serialize() {
         final List<Statement> result = new ArrayList<>(512);
         final ValueFactory vf = SimpleValueFactory.getInstance();
-        final String iriBase = "http://localhost/pipelines/uv-";
+        final String iriBase = BASE_IRI + "pipelines/uv-";
         //
         final IRI pipeline = vf.createIRI(
                 iriBase + UUID.randomUUID().toString());

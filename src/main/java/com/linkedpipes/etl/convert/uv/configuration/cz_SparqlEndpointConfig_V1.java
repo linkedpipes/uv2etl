@@ -25,7 +25,7 @@ class cz_SparqlEndpointConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "output", "OutputRdf");
 
-        component.setTemplate("http://localhost:8080/resources/components/e-sparqlEndpoint");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-sparqlEndpoint");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
