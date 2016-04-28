@@ -52,11 +52,6 @@ class RdfToFilesConfig_V2 implements Configuration {
                 RDF.TYPE,
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#Configuration")));
 
-        st.add(vf.createStatement(
-                resource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileName"),
-                vf.createLiteral(outFileName)));
-
         RDFFormat format;
         if (rdfFileFormat == null) {
             format = null;
@@ -113,8 +108,14 @@ class RdfToFilesConfig_V2 implements Configuration {
                     resource,
                     vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileType"),
                     vf.createLiteral(format.getDefaultMIMEType())));
-
+            // Update file name as UV has widhout and LP with extension.
+            outFileName += format.getDefaultFileExtension();
         }
+
+        st.add(vf.createStatement(
+                resource,
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileName"),
+                vf.createLiteral(outFileName)));
 
         st.add(vf.createStatement(
                 resource,
