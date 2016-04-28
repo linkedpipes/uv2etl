@@ -18,9 +18,6 @@ class RdfMergerConfig_V1 implements Configuration {
     @Override
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
-        LOG.info("{} : Using merger instead of syntantic-sugar component. "
-                + "This may cause some performance drop.", component);
-
         pipeline.renameInPort(component, "rdfInput", "InputRdf");
         pipeline.renameOutPort(component, "rdfOutput", "OutputRdf");
 
