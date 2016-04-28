@@ -71,7 +71,7 @@ public class UvConvertor {
     }
 
     private static void printUsage() {
-            System.out.println("Usage: UvConvertor "
+            System.out.println("Usage: uv2etl.jar "
                     + "-i {UV_PIPELINE_ZIP} "
                     + "[-o {LP_PIPELINE_JSON}]");
     }
