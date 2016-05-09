@@ -329,7 +329,7 @@ class TabularConfig_V2 implements Configuration {
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#generateRowTriple"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#rowTriple"),
                 vf.createLiteral(generateRowTriple)));
 
         st.add(vf.createStatement(
@@ -339,12 +339,12 @@ class TabularConfig_V2 implements Configuration {
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#autoAsStrings"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#autoAsString"),
                 vf.createLiteral(autoAsStrings)));
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#generateTableClass"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#tableClass"),
                 vf.createLiteral(generateTableClass)));
 
         st.add(vf.createStatement(
@@ -359,12 +359,12 @@ class TabularConfig_V2 implements Configuration {
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#dbfTrimString"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#trimString"),
                 vf.createLiteral(dbfTrimString)));
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#xlsAdvancedDoubleParser"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#xlsAdvancedParser"),
                 vf.createLiteral(xlsAdvancedDoubleParser)));
 
         st.add(vf.createStatement(
