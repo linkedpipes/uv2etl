@@ -112,7 +112,7 @@ class DatasetMetadataConfig_V1 implements Configuration {
         }
 
         if (useDatasetURIfromInput) {
-            LOG.warn("{} : 'useDatasetURIfromInput' ignored.", component);
+            LOG.info("{} : 'useDatasetURIfromInput' ignored.", component);
         }
 
         st.add(vf.createStatement(configuration,
