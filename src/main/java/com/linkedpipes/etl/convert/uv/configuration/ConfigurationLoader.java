@@ -1,5 +1,6 @@
 package com.linkedpipes.etl.convert.uv.configuration;
 
+import com.linkedpipes.etl.convert.uv.TransformationReport;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.mapper.CannotResolveClassException;
@@ -52,6 +53,8 @@ public class ConfigurationLoader {
                     // dot to be presented (in a package name).
                     LOG.warn("Unknown class : {}", elementName);
                 }
+                TransformationReport.getInstance()
+                        .unknownConfiguration(elementName);
                 return UnknownConfiguration.class;
             }
         }

@@ -1,5 +1,6 @@
 package com.linkedpipes.etl.convert.uv.configuration;
 
+import com.linkedpipes.etl.convert.uv.TransformationReport;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.slf4j.Logger;
@@ -29,7 +30,10 @@ class FilesToParliamentConfig_V1 implements Configuration {
         // @DataUnit.AsInput(name = "input")
         // public FilesDataUnit filesInput;
 
-        LOG.error("{} : Removed.", component);
+        LOG.error("{} : This component is not supported and so was removed.",
+                component);
+        TransformationReport.getInstance().unsupportedComponents(component,
+                this);
         pipeline.removeComponent(component);
     }
 

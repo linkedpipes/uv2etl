@@ -52,7 +52,7 @@ class RenamerConfig_V1 implements Configuration {
 
         st.add(vf.createStatement(config,
                 RDF.TYPE,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesFilter#Configuration")));
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesRenamer#Configuration")));
 
         st.add(vf.createStatement(config,
                 vf.createIRI(prefix + "pattern"),
