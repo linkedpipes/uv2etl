@@ -12,8 +12,6 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -21,9 +19,6 @@ import org.slf4j.LoggerFactory;
  */
 @XStreamAlias("cz.opendata.unifiedviews.dpus.distributionMetadata.DistributionMetadataConfig_V1")
 class cz_DistributionMetadataConfig_V1 implements Configuration {
-
-    private static final Logger LOG
-            = LoggerFactory.getLogger(cz_DistributionMetadataConfig_V1.class);
 
     private String datasetURI = "";
 
