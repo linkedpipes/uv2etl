@@ -109,7 +109,7 @@ class RdfToFilesConfig_V2 implements Configuration {
                     vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileType"),
                     vf.createLiteral(format.getDefaultMIMEType())));
             // Update file name as UV has widhout and LP with extension.
-            outFileName += format.getDefaultFileExtension();
+            outFileName += "." + format.getDefaultFileExtension();
         }
 
         st.add(vf.createStatement(
