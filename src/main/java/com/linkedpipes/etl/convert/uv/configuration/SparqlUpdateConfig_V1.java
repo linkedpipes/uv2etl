@@ -47,7 +47,7 @@ class SparqlUpdateConfig_V1 implements Configuration {
                 vf.createLiteral(query)));
 
         if (perGraph) {
-            LOG.warn("{} : Per graph mode ignored.", component);
+            LOG.warn("{} : Per graph mode is not supported.", component);
         }
 
         component.setLpConfiguration(st);

@@ -63,6 +63,8 @@ class FilesFilterConfig_V1 implements Configuration {
             LOG.warn("{} : Symblic name no longer exists.", component);
         }
 
+        LOG.warn("Please check configuration of this component.");
+
         component.setLpConfiguration(st);
     }
 

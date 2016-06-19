@@ -62,7 +62,7 @@ class RenamerConfig_V1 implements Configuration {
                 vf.createIRI(prefix + "replaceWith"),
                 vf.createLiteral(replaceText)));
 
-        LOG.info("Please check configuration of this component.");
+        LOG.warn("Please check configuration of this component.");
 
         component.setLpConfiguration(st);
 

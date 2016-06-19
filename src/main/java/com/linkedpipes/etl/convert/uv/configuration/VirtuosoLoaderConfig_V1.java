@@ -59,7 +59,7 @@ class VirtuosoLoaderConfig_V1 implements Configuration {
         }
 
         if (threadCount > 1) {
-            LOG.warn("{} : Multiple threads are not supported.", component);
+            LOG.info("{} : Multiple threads are not supported.", component);
         }
 
         if (skipOnError) {

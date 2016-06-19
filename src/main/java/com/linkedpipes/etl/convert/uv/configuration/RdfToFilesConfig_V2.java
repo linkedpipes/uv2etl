@@ -35,7 +35,7 @@ class RdfToFilesConfig_V2 implements Configuration {
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
         if (pipeline.removeInConnections(component, "config")) {
-            LOG.warn("{} : Runtime configuration ignored.", component);
+            LOG.warn("{} : Runtime configuration ignored. Please check the pipeline.", component);
         }
 
         pipeline.renameInPort(component, "input", "InputRdf");

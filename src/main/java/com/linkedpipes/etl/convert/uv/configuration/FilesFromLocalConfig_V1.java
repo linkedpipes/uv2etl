@@ -27,7 +27,7 @@ class FilesFromLocalConfig_V1 implements Configuration {
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
         if (pipeline.removeInConnections(component, "config")) {
-            LOG.info("{} : Runtime configuration ignored.", component);
+            LOG.warn("{} : Runtime configuration ignored.", component);
         }
 
         pipeline.renameOutPort(component, "output", "OutputRdf");

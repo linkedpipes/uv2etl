@@ -47,12 +47,12 @@ class FilesDownloadConfig_V1 implements Configuration {
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
         if (vfsFiles.isEmpty()) {
-            LOG.info("Empty");
+            LOG.error("At least one file to download must be specified.");
             throw new UnsupportedOperationException("FilesDownloadConfig_V1");
         } else if (vfsFiles.size() == 1) {
             toHttpGet(pipeline, component);
         } else {
-            LOG.info("Many");
+            LOG.error("Multiple files to download are not suported.");
             throw new UnsupportedOperationException("FilesDownloadConfig_V1");
         }
 

@@ -55,9 +55,6 @@ class XsltConfig_V2 implements Configuration {
 
     int numberOfExtraThreads = 0;
 
-    public XsltConfig_V2() {
-    }
-
     @Override
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
         pipeline.renameInPort(component, "filesInput", "FilesInput");
@@ -83,7 +80,7 @@ class XsltConfig_V2 implements Configuration {
 
         // xsltTemplateName is not used, we can safely ignore it.
         if (!failOnError) {
-            LOG.info("{} : Will fail on error.", component);
+            LOG.warn("{} : Will fail on error.", component);
         }
 
         if (outputFileExtension.startsWith(".")) {
@@ -96,7 +93,7 @@ class XsltConfig_V2 implements Configuration {
                 vf.createLiteral(outputFileExtension)));
 
         if (!filesParameters.isEmpty()) {
-            LOG.info("{} : Parameters ignored.", component);
+            LOG.warn("{} : Parameters ignored.", component);
         }
 
         if (numberOfExtraThreads != 0) {
