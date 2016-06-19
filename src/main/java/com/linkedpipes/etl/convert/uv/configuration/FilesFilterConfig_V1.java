@@ -51,7 +51,14 @@ class FilesFilterConfig_V1 implements Configuration {
         if (!useRegExp) {
             pattern = ".*" + pattern + ".*";
         } else {
-            LOG.info("{} : Check file name pattern: {} ", component, pattern);
+            // Update pattern.
+            if (!pattern.startsWith("\\^")) {
+                pattern = ".*" + pattern;
+            }
+            if (!pattern.endsWith("\\$")) {
+                pattern += ".*";
+            }
+            LOG.info("{} : Check file name pattern: {} -> {}", component, object, pattern);
         }
 
         st.add(vf.createStatement(
