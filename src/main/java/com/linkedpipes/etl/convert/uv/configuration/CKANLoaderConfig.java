@@ -2,8 +2,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -127,9 +125,6 @@ class CKANLoaderConfig implements Configuration {
         }
     }
 
-    private static final Logger LOG
-            = LoggerFactory.getLogger(CKANLoaderConfig.class);
-
     private String apiUri = "http://ckan.opendata.cz/api/rest/dataset";
 
     private String apiKey = "";
@@ -145,11 +140,16 @@ class CKANLoaderConfig implements Configuration {
     @Override
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
-        // @DataUnit.AsOutput(name = "JSON")
-        // @DataUnit.AsInput(name = "metadata")
+        final CKANLoaderConfig_V3 config = new CKANLoaderConfig_V3();
 
-        LOG.error("{} : Removed.", component);
-        pipeline.removeComponent(component);
+        config.apiKey = apiKey;
+        config.apiUri = apiUri.replace("/rest/dataset", "/3/action");
+        config.datasetID = datasetID;
+        config.filename = filename;
+        config.loadToCKAN = loadToCKAN;
+        config.orgID = orgID;
+
+        config.update(pipeline, component);
     }
 
 }

@@ -108,6 +108,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(FilesFromLocalConfig_V1.class);
         xstream.processAnnotations(HttpDownloadConfig_V1.class);
         xstream.processAnnotations(CKANLoaderConfig.class);
+        xstream.processAnnotations(CKANLoaderConfig_V3.class);
         xstream.processAnnotations(FilesToScpConfig_V1.class);
         xstream.processAnnotations(RdfToFilesConfig_V1.class);
         xstream.processAnnotations(DatasetMetadataConfig_V1.class);
