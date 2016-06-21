@@ -1,10 +1,14 @@
 package com.linkedpipes.etl.convert.uv.configuration;
 
-import com.linkedpipes.etl.convert.uv.TransformationReport;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
+import org.openrdf.model.IRI;
+import org.openrdf.model.Statement;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.SimpleValueFactory;
+import org.openrdf.model.vocabulary.RDF;
 
 /**
  *
@@ -12,9 +16,6 @@ import org.slf4j.LoggerFactory;
  */
 @XStreamAlias("eu.unifiedviews.cssz.Xls2csvConfig_V1")
 public class Xls2csvConfig_V1 implements Configuration {
-
-    private static final Logger LOG
-            = LoggerFactory.getLogger(Xls2csvConfig_V1.class);
 
     private String template_prefix = "SABLONA_";
 
@@ -25,14 +26,24 @@ public class Xls2csvConfig_V1 implements Configuration {
     @Override
     public void update(LpPipeline pipeline, LpPipeline.Component component) {
 
-        // @DataUnit.AsInput(name = "input")
-        // @DataUnit.AsInput(name = "inputTemplates")
-        // @DataUnit.AsOutput(name = "output")
-        LOG.error("{} : This component is not supported and so was removed.",
-                component);
-        TransformationReport.getInstance().unsupportedComponents(component,
-                this);
-        pipeline.removeComponent(component);
+        pipeline.renameInPort(component, "input", "Xls");
+        pipeline.renameInPort(component, "inputTemplates", "Templates");
+        pipeline.renameOutPort(component, "output", "Output");
+
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-templatedxlstocsv");
+
+        final ValueFactory vf = SimpleValueFactory.getInstance();
+        final List<Statement> st = new ArrayList<>();
+        final IRI configuration = vf.createIRI("http://localhost/resources/configuration/t-templatedxlstocsv");
+
+        st.add(vf.createStatement(configuration, RDF.TYPE,
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedxlstocsv#Configuration")));
+
+        st.add(vf.createStatement(configuration,
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedxlstocsv#prefix"),
+                vf.createLiteral(template_prefix)));
+
+        component.setLpConfiguration(st);
 
     }
 
