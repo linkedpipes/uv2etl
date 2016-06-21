@@ -108,8 +108,7 @@ class FilesToRDFConfig_V1 implements Configuration {
         final LpPipeline.Component merger = new LpPipeline.Component(
                 "rdf-graph-merger",
                 "[I]",
-                component.getX(),
-                component.getY() + 40);
+                component);
 
         merger.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-graphMerger");
 

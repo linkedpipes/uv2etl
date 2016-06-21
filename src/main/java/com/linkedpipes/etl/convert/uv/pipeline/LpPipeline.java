@@ -60,6 +60,20 @@ public class LpPipeline {
             this.y = (int) (y * SCALE_Y);
         }
 
+        /**
+         * Create a component next to given component.
+         *
+         * @param name
+         * @param description
+         * @param component
+         */
+        public Component(String name, String description, Component component) {
+            this.label = limitSize(name);
+            this.description = limitSize(description);
+            this.x = component.x;
+            this.y = component.y + 40;
+        }
+
         public String getLabel() {
             return label;
         }
