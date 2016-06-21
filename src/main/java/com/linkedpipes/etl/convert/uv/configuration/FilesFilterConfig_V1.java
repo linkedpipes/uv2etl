@@ -52,10 +52,10 @@ class FilesFilterConfig_V1 implements Configuration {
             pattern = ".*" + pattern + ".*";
         } else {
             // Update pattern.
-            if (!pattern.startsWith("\\^")) {
+            if (!pattern.startsWith("^")) {
                 pattern = ".*" + pattern;
             }
-            if (!pattern.endsWith("\\$")) {
+            if (!pattern.endsWith("$")) {
                 pattern += ".*";
             }
             LOG.info("{} : Check file name pattern: {} -> {}", component, object, pattern);
