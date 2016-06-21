@@ -30,7 +30,7 @@ class FilesFromLocalConfig_V1 implements Configuration {
             LOG.warn("{} : Runtime configuration ignored.", component);
         }
 
-        pipeline.renameOutPort(component, "output", "OutputRdf");
+        pipeline.renameOutPort(component, "output", "FilesOutput");
 
         component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-filesFromLocal");
 
