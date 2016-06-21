@@ -30,17 +30,17 @@ public class Xls2csvConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "inputTemplates", "Templates");
         pipeline.renameOutPort(component, "output", "Output");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-templatedxlstocsv");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-templatedXlsToCsv");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
-        final IRI configuration = vf.createIRI("http://localhost/resources/configuration/t-templatedxlstocsv");
+        final IRI configuration = vf.createIRI("http://localhost/resources/configuration/t-templatedXlsToCsv");
 
         st.add(vf.createStatement(configuration, RDF.TYPE,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedxlstocsv#Configuration")));
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedXlsToCsv#Configuration")));
 
         st.add(vf.createStatement(configuration,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedxlstocsv#prefix"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedXlsToCsv#prefix"),
                 vf.createLiteral(template_prefix)));
 
         component.setLpConfiguration(st);
