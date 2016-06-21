@@ -78,7 +78,7 @@ class FilesUploadConfig_V1 implements Configuration {
 
         st.add(vf.createStatement(
                 vf.createIRI("http://localhost/resources/configuration/l-filesToLocal"),
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/l-filesToLocal#query"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/l-filesToLocal#path"),
                 vf.createLiteral(uri.replace("file://", ""))));
 
         component.setLpConfiguration(st);
