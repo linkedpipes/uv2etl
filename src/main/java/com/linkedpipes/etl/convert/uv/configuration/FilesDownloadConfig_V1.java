@@ -50,12 +50,45 @@ class FilesDownloadConfig_V1 implements Configuration {
             LOG.error("At least one file to download must be specified.");
             throw new UnsupportedOperationException("FilesDownloadConfig_V1");
         } else if (vfsFiles.size() == 1) {
-            toHttpGet(pipeline, component);
+            final VfsFile file = vfsFiles.get(0);
+            if (file.uri.startsWith("file://")) {
+                toLocal(pipeline, component);
+            } else {
+                toHttpGet(pipeline, component);
+            }
         } else {
             LOG.error("Multiple files to download are not suported.");
             throw new UnsupportedOperationException("FilesDownloadConfig_V1");
         }
 
+    }
+
+    public void toLocal(LpPipeline pipeline, LpPipeline.Component component) {
+
+        pipeline.renameOutPort(component, "output", "FilesOutput");
+
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-filesFromLocal");
+
+        final ValueFactory vf = SimpleValueFactory.getInstance();
+        final List<Statement> st = new ArrayList<>();
+
+        st.add(vf.createStatement(
+                vf.createIRI("http://localhost/resources/configuration/e-filesFromLocal"),
+                RDF.TYPE,
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/e-filesFromLocal#Configuration")));
+
+        final VfsFile file = vfsFiles.get(0);
+        if (!file.fileName.endsWith(file.fileName)) {
+            LOG.warn("{} : Custom name of local file is not supported. Please check the pipeline.", component);
+        }
+
+        final String path = file.uri.substring("file://".length());
+        st.add(vf.createStatement(
+                vf.createIRI("http://localhost/resources/configuration/e-filesFromLocal"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/e-filesFromLocal#path"),
+                vf.createLiteral(path)));
+
+        component.setLpConfiguration(st);
     }
 
     public void toHttpGet(LpPipeline pipeline, LpPipeline.Component component) {
