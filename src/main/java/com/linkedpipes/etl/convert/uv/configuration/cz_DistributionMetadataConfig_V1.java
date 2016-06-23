@@ -88,7 +88,7 @@ class cz_DistributionMetadataConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "datasetMetadata", "DatasetMetadata");
         pipeline.renameOutPort(component, "metadata", "Metadata");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/l-dcatApToCkan");
+        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-distributionMetadata");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -96,7 +96,7 @@ class cz_DistributionMetadataConfig_V1 implements Configuration {
         final String prefix = "http://plugins.linkedpipes.com/ontology/e-distributionMetadata#";
         st.add(vf.createStatement(config,
                 RDF.TYPE,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/e-distributionMetadata")));
+                vf.createIRI(prefix + "Configuration")));
 
         st.add(vf.createStatement(config,
                 vf.createIRI(prefix + "datasetURI"),
