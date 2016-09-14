@@ -85,6 +85,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(FilesToRDFConfig_V1.class);
         xstream.processAnnotations(FilesUploadConfig_V1.class);
         xstream.processAnnotations(FilterValidXmlConfig_V1.class);
+        xstream.processAnnotations(FtpConfig_V1.class);
         xstream.processAnnotations(GunzipperConfig_V1.class);
         xstream.processAnnotations(GzipperConfig_V1.class);
         xstream.processAnnotations(MetadataConfig_V1.class);
