@@ -88,6 +88,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(FtpConfig_V1.class);
         xstream.processAnnotations(GunzipperConfig_V1.class);
         xstream.processAnnotations(GzipperConfig_V1.class);
+        xstream.processAnnotations(HtmlCssConfig_V1.class);
         xstream.processAnnotations(MetadataConfig_V1.class);
         xstream.processAnnotations(RdfGraphMergerConfig_V1.class);
         xstream.processAnnotations(RdfMergerConfig_V1.class);
