@@ -113,6 +113,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(GraphMergeConfig_V1.class);
         xstream.processAnnotations(FilesFromLocalConfig_V1.class);
         xstream.processAnnotations(HttpDownloadConfig_V1.class);
+        xstream.processAnnotations(HttpDownloadConfig_V2.class);
         xstream.processAnnotations(CKANLoaderConfig.class);
         xstream.processAnnotations(CKANLoaderConfig_V3.class);
         xstream.processAnnotations(FilesToScpConfig_V1.class);
