@@ -81,6 +81,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(FilesFilterConfig_V1.class);
         xstream.processAnnotations(FilesFindAndReplaceConfig_V2.class);
         xstream.processAnnotations(FilesMergerConfig_V1.class);
+        xstream.processAnnotations(FilesToLocalFSConfig_V1.class);
         xstream.processAnnotations(FilesToParliamentConfig_V1.class);
         xstream.processAnnotations(FilesToRDFConfig_V1.class);
         xstream.processAnnotations(FilesUploadConfig_V1.class);
