@@ -41,7 +41,7 @@ class RdfToFilesConfig_V2 implements Configuration {
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputFile");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-rdfToFile");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-rdfToFile/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

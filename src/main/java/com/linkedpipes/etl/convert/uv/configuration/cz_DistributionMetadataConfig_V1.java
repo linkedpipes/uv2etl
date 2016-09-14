@@ -88,7 +88,7 @@ class cz_DistributionMetadataConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "datasetMetadata", "DatasetMetadata");
         pipeline.renameOutPort(component, "metadata", "Metadata");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-distributionMetadata");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/e-distributionMetadata/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

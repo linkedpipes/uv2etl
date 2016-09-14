@@ -43,7 +43,7 @@ class CKANLoaderConfig_V3 implements Configuration {
         pipeline.renameInPort(component, "metadata", "Metadata");
         pipeline.renameOutPort(component, "JSON", "OutputFiles");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/l-dcatApToCkan");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/l-dcatApToCkan");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

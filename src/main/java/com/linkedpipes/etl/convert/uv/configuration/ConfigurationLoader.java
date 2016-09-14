@@ -51,7 +51,7 @@ public class ConfigurationLoader {
                 if (elementName.contains(".")) {
                     // There might be names of "properties" ? So we require
                     // dot to be presented (in a package name).
-                    LOG.warn("Unknown class : {}", elementName);
+                    LOG.error("Unknown class : {}", elementName);
                 }
                 TransformationReport.getInstance()
                         .unknownConfiguration(elementName);
@@ -127,6 +127,10 @@ public class ConfigurationLoader {
 
     private static Configuration loadConfiguration(XStream xstream,
             String configAsString) {
+        if (configAsString == null) {
+            // Missing configuration
+            return null;
+        }
         // Update string - based on the configuration migration.
         configAsString = transformString(configAsString);
         //

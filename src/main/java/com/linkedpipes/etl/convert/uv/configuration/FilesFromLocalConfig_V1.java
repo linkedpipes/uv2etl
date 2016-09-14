@@ -32,7 +32,7 @@ class FilesFromLocalConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "output", "FilesOutput");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-filesFromLocal");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/e-filesFromLocal/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

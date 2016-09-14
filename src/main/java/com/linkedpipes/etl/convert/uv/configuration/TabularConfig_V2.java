@@ -85,6 +85,7 @@ class TabularConfig_V2 implements Configuration {
 
     }
 
+    @XStreamAlias("cz.cuni.mff.xrg.uv.transformer.tabular.TabularConfig_V2$AdvanceMapping")
     static class AdvanceMapping {
 
         String uri = "";
@@ -161,7 +162,7 @@ class TabularConfig_V2 implements Configuration {
         pipeline.renameInPort(component, "table", "InputFiles");
         pipeline.renameOutPort(component, "triplifiedTable", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-tabularUv");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-tabularUv/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -378,10 +379,9 @@ class TabularConfig_V2 implements Configuration {
         final LpPipeline.Component merger = new LpPipeline.Component(
                 "rdf-graph-merger",
                 "[I]",
-                component.getX(),
-                component.getY() + 40);
+                component);
 
-        merger.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-graphMerger");
+        merger.setTemplate("http://etl.linkedpipes.com/resources/components/t-graphMerger/0.0.0");
 
         pipeline.insertComponent(merger, 0, 60);
         pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");

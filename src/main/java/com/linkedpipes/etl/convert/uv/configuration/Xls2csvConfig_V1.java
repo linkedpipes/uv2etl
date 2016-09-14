@@ -15,7 +15,7 @@ import org.openrdf.model.vocabulary.RDF;
  * @author Petr Škoda
  */
 @XStreamAlias("eu.unifiedviews.cssz.Xls2csvConfig_V1")
-public class Xls2csvConfig_V1 implements Configuration {
+class Xls2csvConfig_V1 implements Configuration {
 
     private String template_prefix = "SABLONA_";
 
@@ -30,7 +30,7 @@ public class Xls2csvConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "inputTemplates", "Templates");
         pipeline.renameOutPort(component, "output", "Output");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-templatedXlsToCsv");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-templatedXlsToCsv/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

@@ -58,7 +58,7 @@ class FilesToRDFConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "filesInput", "InputFiles");
         pipeline.renameOutPort(component, "rdfOutput", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-filesToRdf");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-filesToRdf/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -110,7 +110,7 @@ class FilesToRDFConfig_V1 implements Configuration {
                 "[I]",
                 component);
 
-        merger.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-graphMerger");
+        merger.setTemplate("http://etl.linkedpipes.com/resources/components/t-graphMerger/0.0.0");
 
         pipeline.insertComponent(merger, 0, 60);
         pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");

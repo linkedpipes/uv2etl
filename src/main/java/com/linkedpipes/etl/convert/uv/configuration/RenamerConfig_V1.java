@@ -43,7 +43,7 @@ class RenamerConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputFiles");
         pipeline.renameOutPort(component, "output", "OutputFiles");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-filesRenamer");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-filesRenamer/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

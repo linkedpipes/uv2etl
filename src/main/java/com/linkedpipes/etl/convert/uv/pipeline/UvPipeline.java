@@ -12,11 +12,28 @@ import java.util.Set;
 @XStreamAlias("cz.cuni.mff.xrg.odcs.commons.app.pipeline.Pipeline")
 public class UvPipeline {
 
+    @XStreamAlias("cz.cuni.mff.xrg.odcs.commons.app.dpu.DPUTemplateRecord")
     public static class Template {
+
+        private String description;
+
+        private String name;
 
         private String jarName;
 
         private String rawConf;
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getJarName() {
+            return jarName;
+        }
 
     }
 
@@ -47,6 +64,14 @@ public class UvPipeline {
             } else {
                 return rawConf;
             }
+        }
+
+        public boolean isUseTemplateConfig() {
+            return useTemplateConfig;
+        }
+
+        public Template getTemplate() {
+            return template;
         }
 
     }

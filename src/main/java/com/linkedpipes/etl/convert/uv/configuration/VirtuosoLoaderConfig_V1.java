@@ -66,7 +66,7 @@ class VirtuosoLoaderConfig_V1 implements Configuration {
             LOG.warn("{} : Does not support 'skipOnError'.", component);
         }
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/x-virtuoso");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/x-virtuoso/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

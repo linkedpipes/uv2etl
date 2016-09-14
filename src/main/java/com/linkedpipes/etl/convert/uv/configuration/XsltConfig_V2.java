@@ -63,7 +63,7 @@ class XsltConfig_V2 implements Configuration {
             LOG.warn("Runtime parameters ignored.");
         }
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-xslt");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-xslt/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

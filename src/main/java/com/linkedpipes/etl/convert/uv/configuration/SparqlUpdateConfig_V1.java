@@ -31,7 +31,7 @@ class SparqlUpdateConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-sparqlUpdate");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-sparqlUpdate/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

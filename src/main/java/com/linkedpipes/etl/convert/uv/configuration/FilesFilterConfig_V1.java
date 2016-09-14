@@ -37,7 +37,9 @@ class FilesFilterConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputFiles");
         pipeline.renameOutPort(component, "output", "OutputFiles");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-filesFilter");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-filesFilter/0.0.0");
+
+        component.setLabel("[CHECK REGEXP]\n" + component.getLabel());
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();
@@ -52,10 +54,10 @@ class FilesFilterConfig_V1 implements Configuration {
             pattern = ".*" + pattern + ".*";
         } else {
             // Update pattern.
-            if (!pattern.startsWith("^")) {
+            if (!pattern.startsWith("^") && !pattern.startsWith(".*")) {
                 pattern = ".*" + pattern;
             }
-            if (!pattern.endsWith("$")) {
+            if (!pattern.endsWith("$") && !pattern.endsWith(".*")) {
                 pattern += ".*";
             }
             LOG.info("{} : Check file name pattern: {} -> {}", component, object, pattern);

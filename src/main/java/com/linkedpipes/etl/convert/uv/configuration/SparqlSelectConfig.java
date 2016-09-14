@@ -27,7 +27,7 @@ class SparqlSelectConfig implements Configuration {
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputFiles");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-sparqlSelect");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-sparqlSelect/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

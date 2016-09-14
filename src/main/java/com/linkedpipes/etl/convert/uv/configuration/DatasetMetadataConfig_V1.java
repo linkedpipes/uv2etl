@@ -92,7 +92,7 @@ class DatasetMetadataConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "metadata", "Metadata");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-datasetMetadata");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/e-datasetMetadata/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

@@ -1,7 +1,10 @@
 package com.linkedpipes.etl.convert.uv.pipeline;
 
+import com.linkedpipes.etl.convert.uv.configuration.ConfigurationFromJarFile;
 import com.linkedpipes.etl.convert.uv.configuration.Configuration;
 import com.linkedpipes.etl.convert.uv.configuration.ConfigurationLoader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,8 +20,6 @@ import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.DCTERMS;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.model.vocabulary.SKOS;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Represent LinkedPipes pipeline model.
@@ -27,6 +28,9 @@ import org.slf4j.LoggerFactory;
  */
 public class LpPipeline {
 
+    /**
+     * Base IRI for the pipeline resource.
+     */
     public static final String BASE_IRI = "http://localhost/";
 
     private static final float SCALE_X = 1.2f;
@@ -37,7 +41,7 @@ public class LpPipeline {
 
         private IRI iri;
 
-        private final String label;
+        private String label;
 
         private final String description;
 
@@ -53,11 +57,18 @@ public class LpPipeline {
 
         private boolean updated = false;
 
-        public Component(String name, String description, int x, int y) {
+        /**
+         * An instance of corresponding UV DPU.
+         */
+        private final UvPipeline.Instance uvInstance;
+
+        public Component(String name, String description, int x, int y,
+                UvPipeline.Instance uvInstance) {
             this.label = limitSize(name);
             this.description = limitSize(description);
             this.x = (int) (x * SCALE_X);
             this.y = (int) (y * SCALE_Y);
+            this.uvInstance = uvInstance;
         }
 
         /**
@@ -72,10 +83,15 @@ public class LpPipeline {
             this.description = limitSize(description);
             this.x = component.x;
             this.y = component.y + 40;
+            this.uvInstance = null;
         }
 
         public String getLabel() {
             return label;
+        }
+
+        public void setLabel(String label) {
+            this.label = label;
         }
 
         public String getTemplate() {
@@ -219,7 +235,32 @@ public class LpPipeline {
 
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(LpPipeline.class);
+    /**
+     * Represent a template to import.
+     */
+    public static class Template {
+
+        /**
+         * IRI assigned for import.
+         */
+        private final String iri;
+
+        private String label;
+
+        private String description;
+
+        /**
+         * IRI of the template for this template.
+         */
+        private String template;
+
+        private List<Statement> lpConfiguration = Collections.EMPTY_LIST;
+
+        private Template(String iri) {
+            this.iri = iri;
+        }
+
+    }
 
     private String label;
 
@@ -227,8 +268,63 @@ public class LpPipeline {
 
     private final List<Connection> connections = new LinkedList<>();
 
+    private final List<Template> templates = new LinkedList<>();
+
     private LpPipeline() {
 
+    }
+
+    /**
+     *
+     * @param uvTemplate
+     * @return IRI for given UV template.
+     */
+    private static String createIri(UvPipeline.Template uvTemplate) {
+        try {
+            return "http://uv.etl.linkedpipes.com/resources/plugins/"
+                    + URLEncoder.encode(uvTemplate.getJarName(), "UTF-8") + "/"
+                    + URLEncoder.encode(uvTemplate.getName(), "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    /**
+     * Return a LP template equivalent of the given UV template.
+     *
+     * @param uvTemplate
+     * @return Null if there is no such template.
+     */
+    public Template getTemplate(UvPipeline.Template uvTemplate) {
+        final String iri = createIri(uvTemplate);
+        for (Template template : templates) {
+            if (template.iri.equals(iri)) {
+                return template;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Create and return a new template.
+     *
+     * @param uvTemplate
+     * @param rootTemplate
+     * @param lpConfiguration
+     * @return
+     */
+    public Template createTemplate(UvPipeline.Template uvTemplate,
+            String rootTemplate, List<Statement> lpConfiguration) {
+        final String iri = createIri(uvTemplate);
+        final Template template = new Template(iri);
+
+        template.label = uvTemplate.getName();
+        template.description = uvTemplate.getDescription();
+        template.template = rootTemplate;
+        template.lpConfiguration = lpConfiguration;
+        templates.add(template);
+
+        return template;
     }
 
     /**
@@ -265,6 +361,26 @@ public class LpPipeline {
             }
         }
         connections.removeAll(toRemove);
+    }
+
+    /**
+     *
+     * @param component
+     * @param binding
+     * @return True if there is incoming connection to given binding.
+     */
+    public boolean inConnections(Component component, String binding) {
+        for (Connection connection : connections) {
+            if (connection instanceof DataConnection) {
+                final DataConnection dataConnection
+                        = (DataConnection) connection;
+                if (dataConnection.getTarget() == component
+                        && dataConnection.targetBinding.equals(binding)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -495,9 +611,49 @@ public class LpPipeline {
                 vf.createIRI("http://linkedpipes.com/ontology/Pipeline"),
                 pipeline));
         result.add(vf.createStatement(pipeline,
+                vf.createIRI("http://etl.linkedpipes.com/ontology/version"),
+                vf.createLiteral(1),
+                pipeline));
+        result.add(vf.createStatement(pipeline,
                 SKOS.PREF_LABEL,
                 vf.createLiteral(label),
                 pipeline));
+        // Templates - a template has a special graph.
+        for (Template template : templates) {
+            final IRI iri = vf.createIRI(template.iri);
+
+           result.add(vf.createStatement(iri, RDF.TYPE,
+                    vf.createIRI("http://linkedpipes.com/ontology/Template"),
+                    iri));
+
+            result.add(vf.createStatement(iri,
+                    SKOS.PREF_LABEL,
+                    vf.createLiteral(template.label),
+                    iri));
+
+            result.add(vf.createStatement(iri,
+                    vf.createIRI("http://linkedpipes.com/ontology/template"),
+                    vf.createIRI(template.template),
+                    iri));
+
+            // Configuration reference.
+            if (!template.lpConfiguration.isEmpty()) {
+                final IRI configGraph = vf.createIRI(template.iri
+                        + "/configuration");
+                result.add(vf.createStatement(iri,
+                        vf.createIRI("http://linkedpipes.com/ontology/configurationGraph"),
+                        configGraph,
+                        iri));
+                // Configuration graph.
+                for (Statement statement : template.lpConfiguration) {
+                    result.add(vf.createStatement(
+                            statement.getSubject(),
+                            statement.getPredicate(),
+                            statement.getObject(),
+                            configGraph));
+                }
+            }
+        }
         // Components.
         for (Component component : components) {
             component.iri = vf.createIRI(pipeline.stringValue()
@@ -531,15 +687,12 @@ public class LpPipeline {
 
             // Configuration reference.
             if (!component.lpConfiguration.isEmpty()) {
-
                 final IRI configGraph = vf.createIRI(component.iri.stringValue()
                         + "/configuration");
-
                 result.add(vf.createStatement(component.iri,
                         vf.createIRI("http://linkedpipes.com/ontology/configurationGraph"),
                         configGraph,
                         pipeline));
-
                 // Configuration graph.
                 for (Statement statement : component.lpConfiguration) {
                     result.add(vf.createStatement(
@@ -548,7 +701,6 @@ public class LpPipeline {
                             statement.getObject(),
                             configGraph));
                 }
-
             }
         }
         // Connections.
@@ -572,9 +724,14 @@ public class LpPipeline {
                     node.getDpuInstance().getName(),
                     node.getDpuInstance().getDescription(),
                     node.getPosition().getX(),
-                    node.getPosition().getY());
+                    node.getPosition().getY(),
+                    node.getDpuInstance());
             lpComponent.uvConfiguration = configLoader.loadConfiguration(
                     node.getDpuInstance().getUsedConfig());
+            if (lpComponent.uvConfiguration == null) {
+                lpComponent.uvConfiguration
+                        = ConfigurationFromJarFile.resolve(node.getDpuInstance());
+            }
             componentMap.put(node, lpComponent);
             lp.components.add(lpComponent);
         }
@@ -595,20 +752,41 @@ public class LpPipeline {
                 }
             }
         }
-        // Convert pipeline.
+        // Convert pipeline, one component after another.
         for (;;) {
             boolean update = false;
             for (Component component : lp.components) {
-                if (!component.updated) {
-                    update = true;
-                    component.updated = true;
-                    // If configuration is missing the component
-                    // isnewly created LP componen.
-                    if (component.uvConfiguration != null) {
-                        component.uvConfiguration.update(lp, component);
-                    }
-                    break;
+                if (component.updated || component.uvInstance == null) {
+                    continue;
                 }
+                update = true;
+                component.updated = true;
+                if (component.uvConfiguration == null) {
+                    throw new RuntimeException(
+                            "Missing configuration for: " + component.label
+                            + " : " + component.template);
+                }
+                component.uvConfiguration.update(lp, component);
+                // Check for template.
+                if (component.uvInstance.isUseTemplateConfig()) {
+                    Template template = lp.getTemplate(
+                            component.uvInstance.getTemplate());
+                    if (template == null) {
+                        template = lp.createTemplate(
+                                component.uvInstance.getTemplate(),
+                                component.template,
+                                component.lpConfiguration);
+                        // TODO We should also generate the template
+                        // configuration with properly set-up
+                        // force and inheritance levels.
+                    }
+                    // Change template and remove instance configuration.
+                    component.template = template.iri;
+                    component.lpConfiguration = Collections.EMPTY_LIST;
+                }
+                // We need to break here as the update method
+                // could changed the lp.components.
+                break;
             }
             if (!update) {
                 break;

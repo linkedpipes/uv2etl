@@ -32,7 +32,7 @@ class SparqlEndpointConfig_V1 implements Configuration {
 
         pipeline.renameOutPort(component, "output", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/e-sparqlEndpoint");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/e-sparqlEndpoint/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

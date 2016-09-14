@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Petr Škoda
  */
-public class UnknownConfiguration implements Configuration {
+class UnknownConfiguration implements Configuration {
 
     private static final Logger LOG
             = LoggerFactory.getLogger(UnknownConfiguration.class);

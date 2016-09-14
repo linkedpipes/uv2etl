@@ -31,7 +31,7 @@ class SparqlConstructConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-sparqlConstruct");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-sparqlConstruct/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
         final List<Statement> st = new ArrayList<>();

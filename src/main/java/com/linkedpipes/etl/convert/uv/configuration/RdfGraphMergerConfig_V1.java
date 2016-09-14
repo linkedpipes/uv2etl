@@ -28,7 +28,7 @@ class RdfGraphMergerConfig_V1 implements Configuration {
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputRdf");
 
-        component.setTemplate(LpPipeline.BASE_IRI + "resources/components/t-singleGraphUnion");
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/t-singleGraphUnion/0.0.0");
     }
 
 }
