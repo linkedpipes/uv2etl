@@ -74,6 +74,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(MasterConfigObject.class);
         //
         xstream.processAnnotations(DistributionMetadataConfig_V1.class);
+        xstream.processAnnotations(DeleteDirectory_V1.class);
         xstream.processAnnotations(ExecuteShellScriptConfig_V1.class);
         xstream.processAnnotations(ExecuteShellScriptConfig_V1.class);
         xstream.processAnnotations(FilesDownloadConfig_V1.class);
