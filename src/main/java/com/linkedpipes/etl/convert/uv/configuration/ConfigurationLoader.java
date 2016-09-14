@@ -120,6 +120,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(DatasetMetadataConfig_V1.class);
         xstream.processAnnotations(cz_DistributionMetadataConfig_V1.class);
         xstream.processAnnotations(RdfNotEmptyConfig_V1.class);
+        xstream.processAnnotations(RdfStatementParserConfig_V2.class);
         xstream.processAnnotations(SPARQLConfig_V1.class);
         xstream.processAnnotations(XsltConfig_V2.class);
     }
