@@ -125,6 +125,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(RdfStatementParserConfig_V2.class);
         xstream.processAnnotations(SPARQLConfig_V1.class);
         xstream.processAnnotations(XsltConfig_V2.class);
+        xstream.processAnnotations(ModifyDateConfig_V1.class);
     }
 
     public Configuration loadConfiguration(String configuration) {
