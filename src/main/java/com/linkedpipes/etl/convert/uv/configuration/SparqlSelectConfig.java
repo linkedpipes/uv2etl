@@ -46,6 +46,19 @@ class SparqlSelectConfig implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-sparqlSelect#fileName"),
                 vf.createLiteral(this.targetPath)));
 
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(configuration,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-sparqlSelect#queryControl"),
+                    force));
+
+            st.add(vf.createStatement(configuration,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-sparqlSelect#fileNameControl"),
+                    force));
+        }
+
         component.setLpConfiguration(st);
     }
 

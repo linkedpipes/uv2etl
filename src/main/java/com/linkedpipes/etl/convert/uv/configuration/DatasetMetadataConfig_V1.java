@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
@@ -240,8 +241,16 @@ class DatasetMetadataConfig_V1 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/e-datasetMetadata#schema"),
                 vf.createLiteral(schema)));
 
-        component.setLpConfiguration(st);
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
 
+            st.add(vf.createStatement(configuration,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-datasetMetadata#control"),
+                    force));
+        }
+
+        component.setLpConfiguration(st);
     }
 
 }

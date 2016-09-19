@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -99,6 +100,21 @@ class XsltConfig_V2 implements Configuration {
 
         if (numberOfExtraThreads != 0) {
             LOG.info("{} : Single thread is used.", component);
+        }
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-xslt"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-xslt#templateControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-xslt"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-xslt#extensionControl"),
+                    force));
         }
 
         component.setLpConfiguration(st);

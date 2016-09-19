@@ -4,6 +4,7 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -81,6 +82,16 @@ class FilesUploadConfig_V1 implements Configuration {
                 vf.createIRI("http://localhost/resources/configuration/l-filesToLocal"),
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/l-filesToLocal#path"),
                 vf.createLiteral(uri.replace("file://", ""))));
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/l-filesToLocal"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/l-filesToLocal#pathControl"),
+                    force));
+        }
 
         component.setLpConfiguration(st);
     }

@@ -4,6 +4,7 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -49,6 +50,16 @@ class SparqlUpdateConfig_V1 implements Configuration {
 
         if (perGraph) {
             LOG.warn("{} : Per graph mode is not supported.", component);
+        }
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-sparqlUpdate"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-sparqlUpdate#queryControl"),
+                    force));
         }
 
         component.setLpConfiguration(st);

@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -91,6 +92,21 @@ class RdfNotEmptyConfig_V1 implements Configuration {
                 vf.createIRI("http://localhost/resources/configuration/q-sparqlAsk"),
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/q-sparqlAsk#failOnTrue"),
                 vf.createLiteral(false)));
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/q-sparqlAsk"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/q-sparqlAsk#queryControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/q-sparqlAsk"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/q-sparqlAsk#failOnTrueControl"),
+                    force));
+        }
 
         component.setLpConfiguration(st);
     }

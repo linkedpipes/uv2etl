@@ -374,6 +374,16 @@ class TabularConfig_V2 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#ignoreMissingColumn"),
                 vf.createLiteral(ignoreMissingColumn)));
 
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    configResource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#control"),
+                    force));
+        }
+
         component.setLpConfiguration(st);
 
         // Insert t-graphMerger and reconnect edges.
@@ -387,7 +397,6 @@ class TabularConfig_V2 implements Configuration {
         pipeline.insertComponent(merger, 0, 60);
         pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");
         pipeline.addDataConnection(component, "OutputRdf", merger, "InputRdf");
-
     }
 
 }

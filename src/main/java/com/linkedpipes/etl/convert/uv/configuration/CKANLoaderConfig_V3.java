@@ -94,6 +94,51 @@ class CKANLoaderConfig_V3 implements Configuration {
                 vf.createIRI(prefix + "overwrite"),
                 vf.createLiteral(overwrite)));
 
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "apiUrlControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "apiKeyControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "loadToCkanControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "datasetIDControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "filenameControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "organizationIdControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "loadLanguageControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "generateVirtuosoExampleControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "generateExampleControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "overwriteControl"),
+                    force));
+        }
+
         component.setLpConfiguration(st);
     }
 

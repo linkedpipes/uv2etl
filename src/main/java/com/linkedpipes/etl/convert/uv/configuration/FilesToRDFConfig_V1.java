@@ -4,6 +4,7 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -93,11 +94,25 @@ class FilesToRDFConfig_V1 implements Configuration {
                     vf.createIRI("http://localhost/resources/configuration/t-filesToRdf"),
                     vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesToRdf#mimeType"),
                     vf.createLiteral(outputType)));
-
         }
 
         if (outputSymbolicName != null) {
             LOG.warn("{} : 'outputSymbolicName' property ignored.", component);
+        }
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-filesToRdf"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesToRdf#commitSizeControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-filesToRdf"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesToRdf#mimeTypeControl"),
+                    force));
         }
 
         // We do not use outputSymbolicName, as we never put data

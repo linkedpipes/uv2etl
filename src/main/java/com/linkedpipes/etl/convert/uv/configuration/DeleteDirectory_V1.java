@@ -39,6 +39,7 @@ class DeleteDirectory_V1 implements Configuration {
 
         component.setLpConfiguration(st);
 
+        // @TODO Add suport for asTemplate
     }
 
 }

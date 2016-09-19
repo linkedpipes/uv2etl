@@ -44,8 +44,16 @@ class Xls2csvConfig_V1 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedXlsToCsv#prefix"),
                 vf.createLiteral(template_prefix)));
 
-        component.setLpConfiguration(st);
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
 
+            st.add(vf.createStatement(configuration,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-templatedXlsToCsv#prefixControl"),
+                    force));
+        }
+
+        component.setLpConfiguration(st);
     }
 
 }

@@ -150,6 +150,7 @@ class RdfStatementParserConfig_V2 implements Configuration {
         LOG.info("{} : SPARQL:\n {}", component, selectQuery);
         component.setLabel("[CHECK]\n" + component.getLabel());
 
+        // @TODO Add support for asTemplate
     }
 
 }

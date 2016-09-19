@@ -104,6 +104,8 @@ class HtmlCssConfig_V1 implements Configuration {
         }
 
         component.setLpConfiguration(st);
+
+        // @TODO Add support for asTemplate
     }
 
 }

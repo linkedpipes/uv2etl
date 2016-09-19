@@ -65,8 +65,20 @@ class RenamerConfig_V1 implements Configuration {
 
         LOG.warn("Please check configuration of this component.");
 
-        component.setLpConfiguration(st);
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
 
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "patternControl"),
+                    force));
+
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "replaceWithControl"),
+                    force));
+        }
+
+        component.setLpConfiguration(st);
     }
 
 }

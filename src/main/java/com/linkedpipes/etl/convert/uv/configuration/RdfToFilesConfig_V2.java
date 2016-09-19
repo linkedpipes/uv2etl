@@ -123,8 +123,27 @@ class RdfToFilesConfig_V2 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#graphUri"),
                 vf.createLiteral(outGraphName)));
 
-        component.setLpConfiguration(st);
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
 
+            st.add(vf.createStatement(
+                    resource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileTypeControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    resource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#fileNameControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    resource,
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-rdfToFile#graphUriControl"),
+                    force));
+        }
+
+        component.setLpConfiguration(st);
     }
 
 }

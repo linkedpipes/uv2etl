@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -98,6 +99,16 @@ class FilesDownloadConfig_V1 implements Configuration {
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/e-filesFromLocal#path"),
                 vf.createLiteral(path)));
 
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/e-filesFromLocal"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-filesFromLocal#pathControl"),
+                    force));
+        }
+
         component.setLpConfiguration(st);
     }
 
@@ -139,6 +150,21 @@ class FilesDownloadConfig_V1 implements Configuration {
             LOG.warn("{} : Options 'ignoreTlsErrors' is not supported.", component);
         }
         LOG.info("{} : Custom time out is not supported.", component);
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/e-httpGetFile"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileUriControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/e-httpGetFile"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-httpGetFile#fileNameControl"),
+                    force));
+        }
 
         component.setLpConfiguration(st);
     }

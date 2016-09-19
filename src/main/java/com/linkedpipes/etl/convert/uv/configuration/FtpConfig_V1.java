@@ -83,6 +83,8 @@ public class FtpConfig_V1 implements Configuration {
                 vf.createLiteral(keepAliveControl)));
 
         component.setLpConfiguration(st);
+
+        // @TODO Add support for asTemplate
     }
 
 }

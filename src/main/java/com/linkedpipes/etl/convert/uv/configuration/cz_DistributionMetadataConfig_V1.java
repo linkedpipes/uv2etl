@@ -225,8 +225,16 @@ class cz_DistributionMetadataConfig_V1 implements Configuration {
                 vf.createIRI(prefix + "schemaType"),
                 vf.createLiteral(schemaType)));
 
-        component.setLpConfiguration(st);
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
 
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "control"),
+                    force));
+        }
+
+        component.setLpConfiguration(st);
     }
 
 }

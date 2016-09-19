@@ -4,6 +4,7 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.ArrayList;
 import java.util.List;
+import org.openrdf.model.IRI;
 import org.openrdf.model.Statement;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
@@ -45,6 +46,21 @@ class TextHolderConfig_V1 implements Configuration {
                 vf.createIRI("http://localhost/resources/configuration/e-textHolder"),
                 vf.createIRI("http://plugins.linkedpipes.com/ontology/e-textHolder#content"),
                 vf.createLiteral(text)));
+
+        if (asTemplate) {
+            final IRI force = vf.createIRI(
+                    "http://plugins.linkedpipes.com/resource/configuration/Force");
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/e-textHolder"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-textHolder#fileNameControl"),
+                    force));
+
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/e-textHolder"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/e-textHolder#contentControl"),
+                    force));
+        }
 
         component.setLpConfiguration(st);
     }
