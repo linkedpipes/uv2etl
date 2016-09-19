@@ -22,7 +22,8 @@ class SparqlSelectConfig implements Configuration {
     private String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o }";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputFiles");

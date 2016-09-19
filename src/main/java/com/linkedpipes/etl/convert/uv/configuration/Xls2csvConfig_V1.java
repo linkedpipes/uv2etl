@@ -24,7 +24,8 @@ class Xls2csvConfig_V1 implements Configuration {
     private String suffix = "\\\\%\\\\%";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "Xls");
         pipeline.renameInPort(component, "inputTemplates", "Templates");

@@ -38,7 +38,8 @@ class CKANLoaderConfig_V3 implements Configuration {
     boolean overwrite = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "metadata", "Metadata");
         pipeline.renameOutPort(component, "JSON", "OutputFiles");

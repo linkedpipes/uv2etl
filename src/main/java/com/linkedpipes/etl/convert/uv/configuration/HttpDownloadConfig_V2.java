@@ -30,16 +30,17 @@ public class HttpDownloadConfig_V2 implements Configuration {
     private List<DownloadInfo_V1> toDownload = new LinkedList<>();
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         if (toDownload.isEmpty() && pipeline.inConnections(component, "config")) {
-            runtimeConfiguration(pipeline, component);
+            runtimeConfiguration(pipeline, component, asTemplate);
         } else {
-            staticConfiguration(pipeline, component);
+            staticConfiguration(pipeline, component, asTemplate);
         }
     }
 
     private void runtimeConfiguration(LpPipeline pipeline,
-            LpPipeline.Component component) {
+            LpPipeline.Component component, boolean asTemplate) {
         pipeline.renameInPort(component, "config", "Configuration");
         pipeline.renameOutPort(component, "files", "FilesOutput");
 
@@ -62,7 +63,7 @@ public class HttpDownloadConfig_V2 implements Configuration {
     }
 
     private void staticConfiguration(LpPipeline pipeline,
-            LpPipeline.Component component) {
+            LpPipeline.Component component, boolean asTemplate) {
         if (pipeline.removeInConnections(component, "config")) {
             LOG.warn("{} : Runtime configuration is not supported!", component);
         }
@@ -77,7 +78,7 @@ public class HttpDownloadConfig_V2 implements Configuration {
                     info.uri, info.virtualPath));
         }
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

@@ -19,7 +19,8 @@ class ZipperConfig_V1 implements Configuration {
     private String zipFile = "data.zip";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "input")
         // @DataUnit.AsOutput(name = "output")

@@ -20,7 +20,8 @@ class DeleteDirectory_V1 implements Configuration {
     private String directory = "/tmp/PUT_DIRECTORY_PATH_HERE";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         component.setTemplate("http://etl.linkedpipes.com/resources/components/x-deleteDirectory");
 

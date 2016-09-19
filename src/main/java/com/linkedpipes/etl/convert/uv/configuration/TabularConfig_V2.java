@@ -157,7 +157,8 @@ class TabularConfig_V2 implements Configuration {
     private boolean ignoreMissingColumn = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "table", "InputFiles");
         pipeline.renameOutPort(component, "triplifiedTable", "OutputRdf");

@@ -19,7 +19,8 @@ class RdfGraphMergerConfig_V1 implements Configuration {
     URI virtualGraph;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (virtualGraph != null) {
             LOG.info("{} : Graph name ignored.", component);

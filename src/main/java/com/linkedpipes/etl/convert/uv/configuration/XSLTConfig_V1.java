@@ -21,7 +21,8 @@ class XSLTConfig_V1 implements Configuration {
     private String outputFileExtension = "";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         final XsltConfig_V2 config = new XsltConfig_V2();
 
@@ -30,7 +31,7 @@ class XSLTConfig_V1 implements Configuration {
         config.xsltTemplateName = this.xslTemplateFileNameShownInDialog;
         config.outputFileExtension = this.outputFileExtension;
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

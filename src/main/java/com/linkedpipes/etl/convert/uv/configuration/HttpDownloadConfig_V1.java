@@ -20,7 +20,8 @@ class HttpDownloadConfig_V1 implements Configuration {
     int retryDelay = 1000;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // -> FilesDownloadConfig_V1
         final FilesDownloadConfig_V1 config = new FilesDownloadConfig_V1();
@@ -35,7 +36,7 @@ class HttpDownloadConfig_V1 implements Configuration {
         vfsFile.fileName = target;
         config.vfsFiles.add(vfsFile);
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

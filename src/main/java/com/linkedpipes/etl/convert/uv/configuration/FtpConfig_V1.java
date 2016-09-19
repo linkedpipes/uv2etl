@@ -41,7 +41,8 @@ public class FtpConfig_V1 implements Configuration {
     private int keepAliveControl = 0;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (!toDownload.isEmpty()) {
             LOG.warn("User given input to FTP extractor is not supported and was ignored.");

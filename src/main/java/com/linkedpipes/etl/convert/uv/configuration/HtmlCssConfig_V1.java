@@ -52,7 +52,9 @@ class HtmlCssConfig_V1 implements Configuration {
     private boolean sourceInformation = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
+
         pipeline.renameInPort(component, "html", "InputFiles");
         pipeline.renameOutPort(component, "rdf", "OutputRdf");
 

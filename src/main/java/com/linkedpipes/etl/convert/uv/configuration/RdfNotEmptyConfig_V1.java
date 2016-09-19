@@ -41,7 +41,8 @@ class RdfNotEmptyConfig_V1 implements Configuration {
     private String message = null;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         if (messageType != null && messageType != DPUContext.MessageType.ERROR) {
             LOG.warn("{} : Will fail if there are no RDF data.", component);
         }

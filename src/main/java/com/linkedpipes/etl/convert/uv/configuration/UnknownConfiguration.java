@@ -15,7 +15,8 @@ class UnknownConfiguration implements Configuration {
             = LoggerFactory.getLogger(UnknownConfiguration.class);
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         LOG.error("{} : Unknown unsupported component.", component);
         TransformationReport.getInstance().unknownComponents(component);
         pipeline.removeComponent(component);

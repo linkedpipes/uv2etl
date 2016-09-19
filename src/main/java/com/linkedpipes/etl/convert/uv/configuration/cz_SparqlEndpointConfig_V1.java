@@ -21,7 +21,8 @@ class cz_SparqlEndpointConfig_V1 implements Configuration {
     String query = "CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameOutPort(component, "output", "OutputRdf");
 

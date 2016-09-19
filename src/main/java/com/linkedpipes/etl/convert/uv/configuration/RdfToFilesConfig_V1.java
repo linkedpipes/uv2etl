@@ -42,7 +42,8 @@ class RdfToFilesConfig_V1 implements Configuration {
             = Arrays.asList(new GraphToFileInfo("", "data", ""));
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         final RdfToFilesConfig_V2 config = new RdfToFilesConfig_V2();
 
@@ -51,7 +52,7 @@ class RdfToFilesConfig_V1 implements Configuration {
         config.outGraphName = this.outGraphName;
         config.rdfFileFormat = this.rdfFileFormat;
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

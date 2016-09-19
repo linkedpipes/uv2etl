@@ -21,7 +21,8 @@ class TextHolderConfig_V1 implements Configuration {
     String text = "<http://localhost/1> <<http://localhost/value> \"some text\"";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameOutPort(component, "file", "FilesOutput");
 

@@ -28,7 +28,8 @@ class DistributionMetadataConfig_V1 implements Configuration {
     private Date created;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsOutput(name = "distributionOutput")
 

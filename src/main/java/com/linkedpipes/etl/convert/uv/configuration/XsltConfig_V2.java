@@ -56,7 +56,8 @@ class XsltConfig_V2 implements Configuration {
     int numberOfExtraThreads = 0;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         pipeline.renameInPort(component, "filesInput", "FilesInput");
         pipeline.renameOutPort(component, "filesOutput", "FilesOutput");
         if (pipeline.removeInConnections(component, "Parameters")) {

@@ -72,7 +72,8 @@ class RdfStatementParserConfig_V2 implements Configuration {
     private boolean transferLabels = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         // input -> InputRdf
         // output -> OutputRdf
 

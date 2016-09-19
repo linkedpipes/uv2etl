@@ -38,7 +38,8 @@ class SPARQLConfig_V1 implements Configuration {
     private boolean rewriteConstructToInsert = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (queryPairs.size() != 1) {
             throw new RuntimeException("Invalid number of queries.");
@@ -54,12 +55,12 @@ class SPARQLConfig_V1 implements Configuration {
             SparqlConstructConfig_V1 config = new SparqlConstructConfig_V1();
             config.perGraph = false;
             config.query = query;
-            config.update(pipeline, component);
+            config.update(pipeline, component, asTemplate);
         } else {
             SparqlUpdateConfig_V1 config = new SparqlUpdateConfig_V1();
             config.perGraph = false;
             config.query = query;
-            config.update(pipeline, component);
+            config.update(pipeline, component, asTemplate);
         }
 
     }

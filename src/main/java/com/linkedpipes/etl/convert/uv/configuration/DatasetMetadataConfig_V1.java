@@ -88,7 +88,8 @@ class DatasetMetadataConfig_V1 implements Configuration {
     String schema = "";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameOutPort(component, "metadata", "Metadata");
 

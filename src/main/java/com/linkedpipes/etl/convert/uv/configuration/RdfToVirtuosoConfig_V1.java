@@ -33,7 +33,8 @@ class RdfToVirtuosoConfig_V1 implements Configuration {
     private int commitSize = 100000;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "rdfInput")
         // @DataUnit.AsOutput(name = "rdfOutput", optional = true)

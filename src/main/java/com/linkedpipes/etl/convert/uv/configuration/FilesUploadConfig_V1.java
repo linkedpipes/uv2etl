@@ -32,7 +32,8 @@ class FilesUploadConfig_V1 implements Configuration {
     boolean moveFiles = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (pipeline.removeInConnections(component, "config")) {
             LOG.warn("{} : 'config' connection ignored.", component);
@@ -53,7 +54,7 @@ class FilesUploadConfig_V1 implements Configuration {
         // sftp -> SCP
         if (uri.startsWith("file")) {
             // Replace with local file upload.
-            toLocalUpload(pipeline, component);
+            toLocalUpload(pipeline, component, asTemplate);
         } else {
             LOG.error("{} : Component ignored.", component);
             pipeline.removeComponent(component);
@@ -62,7 +63,7 @@ class FilesUploadConfig_V1 implements Configuration {
     }
 
     private void toLocalUpload(LpPipeline pipeline,
-            LpPipeline.Component component) {
+            LpPipeline.Component component, boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "FilesInput");
 

@@ -766,9 +766,9 @@ public class LpPipeline {
                             "Missing configuration for: " + component.label
                             + " : " + component.template);
                 }
-                component.uvConfiguration.update(lp, component);
-                // Check for template.
+                // Template or an instance?
                 if (component.uvInstance.isUseTemplateConfig()) {
+                    component.uvConfiguration.update(lp, component, true);
                     Template template = lp.getTemplate(
                             component.uvInstance.getTemplate());
                     if (template == null) {
@@ -776,13 +776,12 @@ public class LpPipeline {
                                 component.uvInstance.getTemplate(),
                                 component.template,
                                 component.lpConfiguration);
-                        // TODO We should also generate the template
-                        // configuration with properly set-up
-                        // force and inheritance levels.
                     }
                     // Change template and remove instance configuration.
                     component.template = template.iri;
                     component.lpConfiguration = Collections.EMPTY_LIST;
+                } else {
+                    component.uvConfiguration.update(lp, component, false);
                 }
                 // We need to break here as the update method
                 // could changed the lp.components.

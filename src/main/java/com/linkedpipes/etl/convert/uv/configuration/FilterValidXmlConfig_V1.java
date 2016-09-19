@@ -27,7 +27,8 @@ class FilterValidXmlConfig_V1 implements Configuration {
     private boolean failPipelineOnValidationError;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "input")
         // @DataUnit.AsOutput(name = "outputValid")

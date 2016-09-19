@@ -23,7 +23,8 @@ class CKANLoaderConfig implements Configuration {
     private String orgID = "d2664e4e-25ba-4dcc-a842-dcc5f2d2f326";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         final CKANLoaderConfig_V3 config = new CKANLoaderConfig_V3();
 
@@ -34,7 +35,7 @@ class CKANLoaderConfig implements Configuration {
         config.loadToCKAN = loadToCKAN;
         config.orgID = orgID;
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

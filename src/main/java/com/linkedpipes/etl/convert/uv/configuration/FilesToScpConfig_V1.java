@@ -23,7 +23,8 @@ class FilesToScpConfig_V1 implements Configuration {
     private boolean softFail = true;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         final FilesUploadConfig_V1 config = new FilesUploadConfig_V1();
         config.password = password;
@@ -38,7 +39,7 @@ class FilesToScpConfig_V1 implements Configuration {
         uriBuilder.append(destination);
         config.uri = uriBuilder.toString();
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

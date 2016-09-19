@@ -83,7 +83,8 @@ class cz_DistributionMetadataConfig_V1 implements Configuration {
     private String schemaType = "";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "datasetMetadata", "DatasetMetadata");
         pipeline.renameOutPort(component, "metadata", "Metadata");

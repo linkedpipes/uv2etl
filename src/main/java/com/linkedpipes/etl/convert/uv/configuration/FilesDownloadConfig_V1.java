@@ -52,7 +52,8 @@ class FilesDownloadConfig_V1 implements Configuration {
     boolean ignoreTlsErrors = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (vfsFiles.isEmpty()) {
             LOG.error("At least one file to download must be specified.");
@@ -60,9 +61,9 @@ class FilesDownloadConfig_V1 implements Configuration {
         } else if (vfsFiles.size() == 1) {
             final VfsFile file = vfsFiles.get(0);
             if (file.uri.startsWith("file://")) {
-                toLocal(pipeline, component);
+                toLocal(pipeline, component, asTemplate);
             } else {
-                toHttpGet(pipeline, component);
+                toHttpGet(pipeline, component, asTemplate);
             }
         } else {
             LOG.error("Multiple files to download are not suported.");
@@ -71,7 +72,8 @@ class FilesDownloadConfig_V1 implements Configuration {
 
     }
 
-    public void toLocal(LpPipeline pipeline, LpPipeline.Component component) {
+    public void toLocal(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameOutPort(component, "output", "FilesOutput");
 
@@ -99,7 +101,8 @@ class FilesDownloadConfig_V1 implements Configuration {
         component.setLpConfiguration(st);
     }
 
-    public void toHttpGet(LpPipeline pipeline, LpPipeline.Component component) {
+    public void toHttpGet(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameOutPort(component, "output", "FilesOutput");
 

@@ -19,7 +19,8 @@ public class FilesToLocalFSConfig_V1 implements Configuration {
     private boolean skipOnError = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
         FilesUploadConfig_V1 config = new FilesUploadConfig_V1();
 
         config.password = "";
@@ -36,7 +37,7 @@ public class FilesToLocalFSConfig_V1 implements Configuration {
 
         config.uri = uriStr.toString();
 
-        config.update(pipeline, component);
+        config.update(pipeline, component, asTemplate);
     }
 
 }

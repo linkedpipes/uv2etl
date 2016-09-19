@@ -32,7 +32,8 @@ class RdfToFilesConfig_V2 implements Configuration {
     String outGraphName = "http://localhost/resource/output";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (pipeline.removeInConnections(component, "config")) {
             LOG.warn("{} : Runtime configuration ignored. Please check the pipeline.", component);

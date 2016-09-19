@@ -11,7 +11,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 class RdfMergerConfig_V1 implements Configuration {
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "rdfInput", "InputRdf");
         pipeline.renameOutPort(component, "rdfOutput", "OutputRdf");

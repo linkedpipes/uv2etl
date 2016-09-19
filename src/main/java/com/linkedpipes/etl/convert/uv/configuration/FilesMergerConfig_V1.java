@@ -17,7 +17,8 @@ class FilesMergerConfig_V1 implements Configuration {
             = LoggerFactory.getLogger(FilesMergerConfig_V1.class);
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "filesInput")
         // @DataUnit.AsOutput(name = "filesOutput")

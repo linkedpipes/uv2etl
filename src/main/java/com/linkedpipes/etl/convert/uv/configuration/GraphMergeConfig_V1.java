@@ -11,7 +11,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 class GraphMergeConfig_V1 implements Configuration {
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputRdf");

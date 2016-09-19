@@ -32,7 +32,8 @@ class FilesFilterConfig_V1 implements Configuration {
     private boolean useRegExp = true;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "InputFiles");
         pipeline.renameOutPort(component, "output", "OutputFiles");

@@ -24,7 +24,8 @@ class FilesFromLocalConfig_V1 implements Configuration {
     String source = "/tmp/";
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         if (pipeline.removeInConnections(component, "config")) {
             LOG.warn("{} : Runtime configuration ignored.", component);

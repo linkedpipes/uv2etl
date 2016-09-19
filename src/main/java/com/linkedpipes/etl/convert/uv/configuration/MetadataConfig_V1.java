@@ -88,7 +88,8 @@ class MetadataConfig_V1 implements Configuration {
     private Date modified = new Date();
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "data", optional = true)
         // @DataUnit.AsOutput(name = "metadata")

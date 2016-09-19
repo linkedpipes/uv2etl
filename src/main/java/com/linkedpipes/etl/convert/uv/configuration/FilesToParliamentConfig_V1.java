@@ -25,7 +25,8 @@ class FilesToParliamentConfig_V1 implements Configuration {
     private boolean clearDestinationGraph = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "input")
         // public FilesDataUnit filesInput;

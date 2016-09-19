@@ -53,7 +53,8 @@ class FilesToRDFConfig_V1 implements Configuration {
     String outputSymbolicName = null;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "filesInput", "InputFiles");
         pipeline.renameOutPort(component, "rdfOutput", "OutputRdf");

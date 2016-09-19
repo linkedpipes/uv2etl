@@ -19,7 +19,8 @@ class UnZipperConfig_V1 implements Configuration {
     boolean notPrefixed = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "FilesInput");
         pipeline.renameOutPort(component, "output", "FilesOutput");

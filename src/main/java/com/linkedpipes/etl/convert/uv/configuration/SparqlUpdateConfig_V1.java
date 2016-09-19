@@ -26,7 +26,8 @@ class SparqlUpdateConfig_V1 implements Configuration {
     boolean perGraph = true;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         pipeline.renameInPort(component, "input", "InputRdf");
         pipeline.renameOutPort(component, "output", "OutputRdf");

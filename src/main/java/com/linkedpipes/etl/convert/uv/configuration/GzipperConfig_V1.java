@@ -19,7 +19,8 @@ class GzipperConfig_V1 implements Configuration {
     private boolean skipOnError = false;
 
     @Override
-    public void update(LpPipeline pipeline, LpPipeline.Component component) {
+    public void update(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
 
         // @DataUnit.AsInput(name = "filesInput")
         // @DataUnit.AsOutput(name = "filesOutput")
