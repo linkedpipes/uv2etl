@@ -88,6 +88,10 @@ class FilesToRDFConfig_V1 implements Configuration {
 
         if (outputType == null || SET_RDF_TYPE.equals(outputType)) {
             // Leave empty, that cause autodetection.
+            st.add(vf.createStatement(
+                    vf.createIRI("http://localhost/resources/configuration/t-filesToRdf"),
+                    vf.createIRI("http://plugins.linkedpipes.com/ontology/t-filesToRdf#mimeType"),
+                    vf.createLiteral("")));
         } else {
             // Stored as mime-type.
             st.add(vf.createStatement(
