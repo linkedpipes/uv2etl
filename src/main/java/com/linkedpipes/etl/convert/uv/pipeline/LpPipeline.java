@@ -20,6 +20,8 @@ import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.DCTERMS;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.model.vocabulary.SKOS;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represent LinkedPipes pipeline model.
@@ -27,6 +29,8 @@ import org.openrdf.model.vocabulary.SKOS;
  * @author Petr Škoda
  */
 public class LpPipeline {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LpPipeline.class);
 
     /**
      * Base IRI for the pipeline resource.
