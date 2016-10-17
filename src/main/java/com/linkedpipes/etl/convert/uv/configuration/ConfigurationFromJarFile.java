@@ -20,6 +20,8 @@ public class ConfigurationFromJarFile {
         String jarFile = instance.getTemplate().getJarName();
         if (jarFile.contains("t-rdfMerger")) {
             return new RdfMergerConfig_V1();
+        } else if (jarFile.contains("t-unzipper")) {
+            return new UnZipperConfig_V1();
         } else {
             throw new RuntimeException("Unknown jar-file: " + jarFile + " for "
                 + instance.getName());
