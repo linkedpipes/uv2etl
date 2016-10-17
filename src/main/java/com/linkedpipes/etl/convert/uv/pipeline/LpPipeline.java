@@ -618,11 +618,11 @@ public class LpPipeline {
                 SKOS.PREF_LABEL,
                 vf.createLiteral(label),
                 pipeline));
-        // Templates - a template has a special graph.
+        // Templates - each template has a special graph.
         for (Template template : templates) {
             final IRI iri = vf.createIRI(template.iri);
 
-           result.add(vf.createStatement(iri, RDF.TYPE,
+            result.add(vf.createStatement(iri, RDF.TYPE,
                     vf.createIRI("http://linkedpipes.com/ontology/Template"),
                     iri));
 
@@ -726,8 +726,18 @@ public class LpPipeline {
                     node.getPosition().getX(),
                     node.getPosition().getY(),
                     node.getDpuInstance());
-            lpComponent.uvConfiguration = configLoader.loadConfiguration(
-                    node.getDpuInstance().getUsedConfig());
+            final String configuration = node.getDpuInstance().getUsedConfig();
+            if (!configuration.isEmpty()) {
+                try {
+                    lpComponent.uvConfiguration
+                            = configLoader.loadConfiguration(configuration);
+                } catch (RuntimeException ex) {
+                    LOG.error("Invalid configuration for: '{}'\n{}",
+                            lpComponent.getLabel(),
+                            node.getDpuInstance().getUsedConfig());
+                    throw ex;
+                }
+            }
             if (lpComponent.uvConfiguration == null) {
                 lpComponent.uvConfiguration
                         = ConfigurationFromJarFile.resolve(node.getDpuInstance());
@@ -755,7 +765,8 @@ public class LpPipeline {
         // Convert pipeline, one component after another.
         for (;;) {
             boolean update = false;
-            for (Component component : lp.components) {
+            for (int index = lp.components.size() - 1 ; index >= 0; --index) {
+                Component component = lp.components.get(index);
                 if (component.updated || component.uvInstance == null) {
                     continue;
                 }
@@ -769,6 +780,11 @@ public class LpPipeline {
                 // Template or an instance?
                 if (component.uvInstance.isUseTemplateConfig()) {
                     component.uvConfiguration.update(lp, component, true);
+                    if (component.template == null) {
+                        // Component ignored - so the template is ignored
+                        // as well.
+                        continue;
+                    }
                     Template template = lp.getTemplate(
                             component.uvInstance.getTemplate());
                     if (template == null) {
