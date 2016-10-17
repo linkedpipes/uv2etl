@@ -57,7 +57,7 @@ class FilesUploadConfig_V1 implements Configuration {
             // Replace with local file upload.
             toLocalUpload(pipeline, component, asTemplate);
         } else {
-            LOG.error("{} : Component ignored.", component);
+            LOG.error("{} : Component IGNORED.", component);
             pipeline.removeComponent(component);
         }
 
