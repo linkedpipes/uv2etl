@@ -78,9 +78,11 @@ class CKANLoaderConfig_V3 implements Configuration {
                 vf.createIRI(prefix + "organizationId"),
                 vf.createLiteral(orgID)));
 
-        st.add(vf.createStatement(config,
-                vf.createIRI(prefix + "loadLanguage"),
-                vf.createLiteral(loadLanguage)));
+        if (loadLanguage != null) {
+            st.add(vf.createStatement(config,
+                    vf.createIRI(prefix + "loadLanguage"),
+                    vf.createLiteral(loadLanguage)));
+        }
 
         st.add(vf.createStatement(config,
                 vf.createIRI(prefix + "generateVirtuosoExample"),
