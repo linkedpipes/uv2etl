@@ -18,7 +18,7 @@ public class HttpDownloadConfig_V2 implements Configuration {
     private static final Logger LOG
             = LoggerFactory.getLogger(HttpDownloadConfig_V2.class);
 
-    @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.httpdownload.HttpDownloadConfig_V2$DownloadInfo_V1")
+    @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.httpdownload.DownloadInfo_V1")
     public class DownloadInfo_V1 {
 
         private String uri;
