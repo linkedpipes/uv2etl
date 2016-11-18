@@ -55,10 +55,8 @@ class FilesDownloadConfig_V1 implements Configuration {
     @Override
     public void update(LpPipeline pipeline, LpPipeline.Component component,
             boolean asTemplate) {
-
         if (vfsFiles.isEmpty()) {
-            LOG.error("At least one file to download must be specified.");
-            throw new UnsupportedOperationException("FilesDownloadConfig_V1");
+            toHttpGetList(pipeline, component, asTemplate);
         } else if (vfsFiles.size() == 1) {
             final VfsFile file = vfsFiles.get(0);
             if (file.uri.startsWith("file://")) {
@@ -167,6 +165,37 @@ class FilesDownloadConfig_V1 implements Configuration {
         }
 
         component.setLpConfiguration(st);
+    }
+
+    public void toHttpGetList(LpPipeline pipeline, LpPipeline.Component component,
+            boolean asTemplate) {
+
+        LOG.info("{} : Check component runtime configuration.", component);
+
+        pipeline.renameInPort(component, "config", "Configuration");
+
+        component.setTemplate("http://etl.linkedpipes.com/resources/components/e-httpGetFiles/0.0.0");
+
+        if (ignoreTlsErrors) {
+            LOG.warn("{} : Options 'ignoreTlsErrors' is not supported.", component);
+        }
+        LOG.info("{} : Custom time out is not supported.", component);
+
+        final ValueFactory vf = SimpleValueFactory.getInstance();
+        final List<Statement> st = new ArrayList<>();
+
+        st.add(vf.createStatement(
+                vf.createIRI("http://localhost/resources/configuration/e-httpGetFiles"),
+                RDF.TYPE,
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/e-httpGetFiles#Configuration")));
+
+        st.add(vf.createStatement(
+                vf.createIRI("http://localhost/resources/configuration/e-httpGetFiles"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/e-httpGetFiles#skipOnError"),
+                vf.createLiteral(softFail)));
+
+        component.setLpConfiguration(st);
+
     }
 
 }
