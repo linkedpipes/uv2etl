@@ -52,7 +52,6 @@ class FilesUploadConfig_V1 implements Configuration {
             LOG.warn("{} : Does not support move files.", component);
         }
 
-        // sftp -> SCP
         if (uri.startsWith("file")) {
             // Replace with local file upload.
             toLocalUpload(pipeline, component, asTemplate);
