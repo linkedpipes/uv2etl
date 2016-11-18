@@ -173,6 +173,7 @@ class FilesDownloadConfig_V1 implements Configuration {
         LOG.info("{} : Check component runtime configuration.", component);
 
         pipeline.renameInPort(component, "config", "Configuration");
+        pipeline.renameOutPort(component, "output", "FilesOutput");
 
         component.setTemplate("http://etl.linkedpipes.com/resources/components/e-httpGetFiles/0.0.0");
 
