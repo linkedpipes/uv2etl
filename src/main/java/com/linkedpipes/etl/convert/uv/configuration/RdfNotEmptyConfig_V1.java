@@ -63,7 +63,8 @@ class RdfNotEmptyConfig_V1 implements Configuration {
             pipeline.addRunAfter(connection.getSource(),
                     connection.getTarget());
         }
-        // Replace after component.
+
+        // Remap input connections.
         for (LpPipeline.DataConnection out : after) {
             for (LpPipeline.DataConnection in : before) {
                 pipeline.addDataConnection(in.getSource(), in.sourceBinding,
@@ -72,7 +73,6 @@ class RdfNotEmptyConfig_V1 implements Configuration {
             pipeline.removeConnection(out);
         }
 
-        // Remap input connections.
         component.setTemplate("http://etl.linkedpipes.com/resources/components/q-sparqlAsk/0.0.0");
 
         final ValueFactory vf = SimpleValueFactory.getInstance();
