@@ -105,7 +105,17 @@ class HtmlCssConfig_V1 implements Configuration {
 
         component.setLpConfiguration(st);
 
-        // @TODO Add support for asTemplate
+        // Insert t-graphMerger and reconnect edges.
+        final LpPipeline.Component merger = new LpPipeline.Component(
+                "rdf-graph-merger",
+                "[I]",
+                component);
+
+        merger.setTemplate("http://etl.linkedpipes.com/resources/components/t-graphMerger/0.0.0");
+
+        pipeline.insertComponent(merger, 0, 60);
+        pipeline.reconnectOutput(component, "OutputRdf", merger, "OutputRdf");
+        pipeline.addDataConnection(component, "OutputRdf", merger, "InputRdf");
     }
 
 }
