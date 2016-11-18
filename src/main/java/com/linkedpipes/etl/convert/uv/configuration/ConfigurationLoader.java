@@ -50,8 +50,9 @@ public class ConfigurationLoader {
             } catch (CannotResolveClassException ex) {
                 if (elementName.contains(".")) {
                     // There might be names of "properties" ? So we require
-                    // dot to be presented (in a package name).
-                    LOG.error("Unknown class : {}", elementName);
+                    // dot to be presented (in a package name). Thus
+                    // we print only names of classes.
+                    LOG.error("Unknown class detected: {}", elementName);
                 }
                 TransformationReport.getInstance()
                         .unknownConfiguration(elementName);
