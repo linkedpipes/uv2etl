@@ -801,7 +801,13 @@ public class LpPipeline {
                     component.template = template.iri;
                     component.lpConfiguration = Collections.EMPTY_LIST;
                 } else {
-                    component.uvConfiguration.update(lp, component, false);
+                    try {
+                        component.uvConfiguration.update(lp, component, false);
+                    } catch (Exception ex) {
+                        LOG.error("Problematic component ignored.", ex);
+                        // Remove component.
+                        lp.removeComponent(component);
+                    }
                 }
                 // We need to break here as the update method
                 // could changed the lp.components.
