@@ -736,10 +736,10 @@ public class LpPipeline {
                     lpComponent.uvConfiguration
                             = configLoader.loadConfiguration(configuration);
                 } catch (Exception ex) {
-                    LOG.error("Invalid configuration for: '{}'\n{}",
+                    LOG.error("Invalid configuration for: '{}' "
+                            + "component ignored.\n{}",
                             lpComponent.getLabel(),
                             node.getDpuInstance().getUsedConfig());
-                    LOG.info("Component ignored.");
                     continue;
                 }
             }
