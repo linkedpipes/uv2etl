@@ -59,11 +59,11 @@ public class UvConvertor {
         //
         final ZipFile zipFile = new ZipFile(path);
         final Enumeration<? extends ZipEntry> entries = zipFile.entries();
-        while(entries.hasMoreElements()){
+        while (entries.hasMoreElements()) {
             final ZipEntry entry = entries.nextElement();
             if (entry.getName().equals("pipeline.xml")) {
                 try (InputStream stream = zipFile.getInputStream(entry)) {
-                    return (UvPipeline)xstream.fromXML(stream);
+                    return (UvPipeline) xstream.fromXML(stream);
                 }
             }
         }
