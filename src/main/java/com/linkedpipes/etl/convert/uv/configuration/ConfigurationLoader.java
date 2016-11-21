@@ -100,6 +100,7 @@ public class ConfigurationLoader {
         xstream.processAnnotations(SilkLinkerConfig_V1.class);
         xstream.processAnnotations(SparqlConstructConfig_V1.class);
         xstream.processAnnotations(SparqlEndpointConfig_V1.class);
+        xstream.processAnnotations(SparqlLinkerConfig_V1.class);
         xstream.processAnnotations(SparqlSelectConfig.class);
         xstream.processAnnotations(SparqlUpdateConfig_V1.class);
         xstream.processAnnotations(TabularConfig_V2.class);
