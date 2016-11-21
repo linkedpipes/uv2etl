@@ -735,11 +735,12 @@ public class LpPipeline {
                 try {
                     lpComponent.uvConfiguration
                             = configLoader.loadConfiguration(configuration);
-                } catch (RuntimeException ex) {
+                } catch (Exception ex) {
                     LOG.error("Invalid configuration for: '{}'\n{}",
                             lpComponent.getLabel(),
                             node.getDpuInstance().getUsedConfig());
-                    throw ex;
+                    LOG.info("Component ignored.");
+                    continue;
                 }
             }
             if (lpComponent.uvConfiguration == null) {
@@ -749,9 +750,15 @@ public class LpPipeline {
             componentMap.put(node, lpComponent);
             lp.components.add(lpComponent);
         }
-        // Connections.
+        // Connections - check that we got the templates.
         for (UvPipeline.Edge edge : uv.getGraph().getEdges()) {
-            for (String cmd : edge.getScript().split(";")) {
+            if (!componentMap.containsKey(edge.getFrom()) ||
+                    !componentMap.containsKey(edge.getTo())) {
+                LOG.info("Skipped invalid edge.");
+                continue;
+            }
+            String script = edge.getScript();
+            for (String cmd : script.split(";")) {
                 if (cmd.contains("run_after")) {
                     lp.connections.add(new RunAfter(
                             componentMap.get(edge.getFrom()),
