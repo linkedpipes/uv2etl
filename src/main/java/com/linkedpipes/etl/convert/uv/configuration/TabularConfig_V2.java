@@ -314,7 +314,7 @@ class TabularConfig_V2 implements Configuration {
 
         st.add(vf.createStatement(
                 configResource,
-                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#rowsClass"),
+                vf.createIRI("http://plugins.linkedpipes.com/ontology/t-tabularUv#rowClass"),
                 vf.createLiteral(rowsClass)));
 
         if (xlsSheetName != null) {
