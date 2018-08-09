@@ -6,10 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.rdfvalidator.RdfValidatorConfig_V2")
 class RdfValidatorConfig_V2 implements Configuration {
 

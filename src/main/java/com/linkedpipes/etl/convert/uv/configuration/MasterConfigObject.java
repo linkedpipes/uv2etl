@@ -4,10 +4,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("MasterConfigObject")
 class MasterConfigObject {
 

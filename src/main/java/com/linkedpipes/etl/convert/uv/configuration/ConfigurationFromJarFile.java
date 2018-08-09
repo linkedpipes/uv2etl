@@ -7,10 +7,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 
 import com.linkedpipes.etl.convert.uv.pipeline.UvPipeline;
 
-/**
- *
- * @author Petr Škoda
- */
 public class ConfigurationFromJarFile {
 
     private ConfigurationFromJarFile() {

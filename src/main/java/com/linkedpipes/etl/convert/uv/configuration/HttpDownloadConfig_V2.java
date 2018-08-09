@@ -8,10 +8,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.httpdownload.HttpDownloadConfig_V2")
 public class HttpDownloadConfig_V2 implements Configuration {
 

@@ -4,8 +4,6 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 
 /**
  * Represent a UV component and its configuration.
- *
- * @author Petr Škoda
  */
 public interface Configuration {
 

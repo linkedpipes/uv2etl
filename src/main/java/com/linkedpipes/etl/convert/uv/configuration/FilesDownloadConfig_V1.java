@@ -13,10 +13,6 @@ import org.openrdf.model.vocabulary.RDF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.extractor.filesdownload.FilesDownloadConfig_V1")
 class FilesDownloadConfig_V1 implements Configuration {
 

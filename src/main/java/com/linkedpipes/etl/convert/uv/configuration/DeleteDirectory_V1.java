@@ -10,10 +10,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.loader.deleteDirectory.DeleteDirectory_V1")
 class DeleteDirectory_V1 implements Configuration {
 

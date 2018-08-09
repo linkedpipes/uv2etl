@@ -13,10 +13,6 @@ import org.openrdf.model.vocabulary.RDF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.ftp.FtpConfig_V1")
 public class FtpConfig_V1 implements Configuration {
 

@@ -10,10 +10,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.trandformer.sparqlselect.SparqlSelectConfig")
 class SparqlSelectConfig implements Configuration {
 

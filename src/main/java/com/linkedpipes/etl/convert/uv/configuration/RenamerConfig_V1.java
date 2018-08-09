@@ -12,10 +12,6 @@ import org.openrdf.model.vocabulary.RDF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.filesrenamer.RenamerConfig_V1")
 class RenamerConfig_V1 implements Configuration {
 

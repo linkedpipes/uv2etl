@@ -10,10 +10,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.opendata.unifiedviews.dpus.ckan.CKANLoaderConfig_V3")
 class CKANLoaderConfig_V3 implements Configuration {
 

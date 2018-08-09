@@ -6,10 +6,6 @@ import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.rdfgraphmerger.RdfGraphMergerConfig_V1")
 class RdfGraphMergerConfig_V1 implements Configuration {
 

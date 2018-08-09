@@ -8,10 +8,6 @@ import java.util.LinkedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.metadata.MetadataConfig_V1")
 class MetadataConfig_V1 implements Configuration {
 

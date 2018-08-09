@@ -4,10 +4,6 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.net.URL;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.extractor.httpdownload.HttpDownloadConfig_V1")
 class HttpDownloadConfig_V1 implements Configuration {
 

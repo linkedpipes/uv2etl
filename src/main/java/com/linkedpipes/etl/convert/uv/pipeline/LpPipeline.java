@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Represent LinkedPipes pipeline model.
- *
- * @author Petr Škoda
  */
 public class LpPipeline {
 

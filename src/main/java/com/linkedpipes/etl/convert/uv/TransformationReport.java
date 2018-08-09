@@ -7,8 +7,6 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
  *
  * TODO: At the end use to generate summary, or report that can be
  * used to create an issue.
- *
- * @author Petr Škoda
  */
 public class TransformationReport {
 

@@ -10,10 +10,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.cssz.Xls2csvConfig_V1")
 class Xls2csvConfig_V1 implements Configuration {
 

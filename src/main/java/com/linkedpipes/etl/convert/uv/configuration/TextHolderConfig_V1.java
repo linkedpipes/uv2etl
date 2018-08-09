@@ -10,10 +10,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.textholder.TextHolderConfig_V1")
 class TextHolderConfig_V1 implements Configuration {
 

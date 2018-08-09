@@ -6,10 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.gzipper.GzipperConfig_V1")
 class GzipperConfig_V1 implements Configuration {
 

@@ -12,10 +12,6 @@ import org.openrdf.model.vocabulary.RDF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.filesfromlocal.FilesFromLocalConfig_V1")
 class FilesFromLocalConfig_V1 implements Configuration {
 

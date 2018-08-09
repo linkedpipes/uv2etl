@@ -6,8 +6,6 @@ import java.util.Set;
 
 /**
  * UvPipeline model for loading from UV.
- *
- * @author Petr Škoda
  */
 @XStreamAlias("cz.cuni.mff.xrg.odcs.commons.app.pipeline.Pipeline")
 public class UvPipeline {

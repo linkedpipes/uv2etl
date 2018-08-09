@@ -23,10 +23,6 @@ import org.openrdf.rio.helpers.JSONLDSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 public class UvConvertor {
 
     private static final Logger LOG = LoggerFactory.getLogger(UvConvertor.class);

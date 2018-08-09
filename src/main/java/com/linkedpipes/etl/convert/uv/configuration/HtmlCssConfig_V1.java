@@ -11,10 +11,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.transformer.HtmlCssConfig_V1")
 class HtmlCssConfig_V1 implements Configuration {
 

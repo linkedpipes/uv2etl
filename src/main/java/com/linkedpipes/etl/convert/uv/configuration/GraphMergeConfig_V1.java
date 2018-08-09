@@ -3,10 +3,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.transformer.graphmerge.GraphMergeConfig_V1")
 class GraphMergeConfig_V1 implements Configuration {
 

@@ -6,10 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.extractor.executeshellscript.ExecuteShellScriptConfig_V1")
 class ExecuteShellScriptConfig_V1 implements Configuration {
 

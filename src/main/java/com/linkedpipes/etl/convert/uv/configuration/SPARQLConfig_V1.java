@@ -4,10 +4,6 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.util.List;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.sparql.SPARQLConfig_V1")
 class SPARQLConfig_V1 implements Configuration {
 

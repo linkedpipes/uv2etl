@@ -6,10 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.openrdf.rio.RDFFormat;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.rdftofiles.RdfToFilesConfig_V1")
 class RdfToFilesConfig_V1 implements Configuration {
 

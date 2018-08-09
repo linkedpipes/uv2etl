@@ -13,10 +13,6 @@ import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.SimpleValueFactory;
 import org.openrdf.model.vocabulary.RDF;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.opendata.unifiedviews.dpus.distributionMetadata.DistributionMetadataConfig_V1")
 class cz_DistributionMetadataConfig_V1 implements Configuration {
 

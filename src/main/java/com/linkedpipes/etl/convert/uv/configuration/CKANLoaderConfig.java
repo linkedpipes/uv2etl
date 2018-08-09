@@ -3,10 +3,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.opendata.unifiedviews.dpus.ckan.CKANLoaderConfig")
 class CKANLoaderConfig implements Configuration {
 

@@ -3,10 +3,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.loader.filestolocalfs.FilesToLocalFSConfig_V1")
 public class FilesToLocalFSConfig_V1 implements Configuration {
 

@@ -8,10 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.filesfindandreplace.FilesFindAndReplaceConfig_V2")
 class FilesFindAndReplaceConfig_V2 implements Configuration {
 

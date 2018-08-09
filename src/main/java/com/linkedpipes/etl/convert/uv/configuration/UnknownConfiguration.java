@@ -5,10 +5,6 @@ import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 class UnknownConfiguration implements Configuration {
 
     private static final Logger LOG

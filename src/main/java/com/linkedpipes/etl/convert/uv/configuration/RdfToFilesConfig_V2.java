@@ -13,10 +13,6 @@ import org.openrdf.rio.RDFFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("eu.unifiedviews.plugins.transformer.rdftofiles.RdfToFilesConfig_V2")
 class RdfToFilesConfig_V2 implements Configuration {
 

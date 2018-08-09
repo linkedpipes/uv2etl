@@ -3,10 +3,6 @@ package com.linkedpipes.etl.convert.uv.configuration;
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-/**
- *
- * @author Petr Škoda
- */
 @XStreamAlias("cz.cuni.mff.xrg.uv.extractor.sparqlendpoint.SparqlEndpointConfig_V1")
 class cz_SparqlEndpointConfig_V1 implements Configuration {
 
