@@ -66,8 +66,8 @@ public class LpPipeline {
 
         public Component(String name, String description, int x, int y,
                 UvPipeline.Instance uvInstance) {
-            this.label = limitSize(name);
-            this.description = limitSize(description);
+            this.label = name;
+            this.description = description;
             this.x = (int) (x * SCALE_X);
             this.y = (int) (y * SCALE_Y);
             this.uvInstance = uvInstance;
@@ -81,8 +81,8 @@ public class LpPipeline {
          * @param component
          */
         public Component(String name, String description, Component component) {
-            this.label = limitSize(name);
-            this.description = limitSize(description);
+            this.label = name;
+            this.description = description;
             this.x = component.x;
             this.y = component.y + 40;
             this.uvInstance = null;
@@ -139,18 +139,6 @@ public class LpPipeline {
         @Override
         public String toString() {
             return "[" + label + "]";
-        }
-
-        private static String limitSize(String string) {
-            if (string.length() < 25) {
-                return string;
-            }
-            final StringBuffer newString
-                    = new StringBuffer(string.length() + string.length() / 25);
-            // TODO Use full description here.
-            newString.append(string.substring(0, 17)).append("...");
-            //
-            return newString.toString();
         }
 
     }
