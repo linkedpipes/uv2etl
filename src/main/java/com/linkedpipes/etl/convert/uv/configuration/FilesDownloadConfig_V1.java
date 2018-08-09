@@ -2,6 +2,8 @@ package com.linkedpipes.etl.convert.uv.configuration;
 
 import com.linkedpipes.etl.convert.uv.pipeline.LpPipeline;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,7 @@ class FilesDownloadConfig_V1 implements Configuration {
     @XStreamAlias("eu.unifiedviews.plugins.extractor.filesdownload.VfsFile")
     static class VfsFile {
 
+        // The URL is stored in an encoded form.
         String uri = "";
 
         String username = "";
@@ -55,6 +58,11 @@ class FilesDownloadConfig_V1 implements Configuration {
             toHttpGetList(pipeline, component, asTemplate);
         } else if (vfsFiles.size() == 1) {
             final VfsFile file = vfsFiles.get(0);
+            try {
+                file.uri = java.net.URLDecoder.decode(file.uri, "utf-8");
+            } catch (UnsupportedEncodingException ex) {
+                throw new RuntimeException(ex);
+            }
             if (file.uri.startsWith("file://")) {
                 toLocal(pipeline, component, asTemplate);
             } else {
